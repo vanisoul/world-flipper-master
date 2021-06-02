@@ -102,7 +102,11 @@ func firstCard() {
 	if !newSucc {
 		reStart()
 		return
+	} else {
+		analyzeRoleImg("big")
+
 	}
+
 	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("OK.png"))
 	if !okNewTipSucc {
 		reStart()

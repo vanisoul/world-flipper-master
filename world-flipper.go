@@ -22,8 +22,7 @@ func infoID() {
 	setLog("infoID", "初始化本次刷首抽ID", thisID)
 }
 
-//解析圖片 typeImg {big, small} |
-// img 圖片 _Ctype_MMBitmapRef 型別
+//解析圖片 typeImg {big, small} 並自動存入全域變數
 func analyzeRoleImg(typeImg string) {
 
 	if typeImg == "big" {
