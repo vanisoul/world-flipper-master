@@ -95,7 +95,7 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 	return
 }
 
-//儲存定義的的視窗
+//儲存定義的的視窗 |
 // args 儲存至 log/${args[0]}/${agrs[1]}.....
 func savescreen(args ...string) int {
 
@@ -111,4 +111,15 @@ func savescreen(args ...string) int {
 	robotgo.SaveBitmap(bitmap, imgName)
 
 	return r
+}
+
+//看到指定圖片 就截圖存放
+func checkImgSaveImg(fullImg string) bool {
+	succ := findscreen(fullImg, 0.1)
+	if succ {
+		path := []string{thisID}
+		savescreen(path...)
+		return true
+	}
+	return false
 }
