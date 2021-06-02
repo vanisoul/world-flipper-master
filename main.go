@@ -112,7 +112,7 @@ func firstCard() {
 		reStart()
 		return
 	}
-	checkNameSucc := checkImgClickOtherImg(GetSystemImg("checkName.png"), GetSystemImg("OK.png"))
+	checkNameSucc := checkImgClickOtherImg(GetSystemImg("checkName.png"), GetSystemImg("checkName2.png"))
 	if !checkNameSucc {
 		reStart()
 		return
