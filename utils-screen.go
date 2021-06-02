@@ -112,6 +112,7 @@ func savescreen(args ...string) int {
 	}
 
 	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
+	defer robotgo.FreeBitmap(bitmap)
 	robotgo.SaveBitmap(bitmap, imgName)
 
 	return r
