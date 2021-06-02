@@ -5,13 +5,14 @@ import (
 	"image"
 	"math/rand"
 	"os"
+	"path"
 	"time"
 
 	"github.com/go-vgo/robotgo"
 	"github.com/labstack/gommon/log"
 )
 
-var basewhilecount = 5
+var basewhilecount = 20
 
 // findscreen 多次尋找圖片
 // fullimg 圖片路徑
@@ -94,12 +95,19 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 	return
 }
 
-//儲存判斷的視窗
-func getscreen() int {
+//儲存定義的的視窗
+// args 儲存至 log/${args[0]}/${agrs[1]}.....
+func savescreen(args ...string) int {
 
 	r := rand.New(rand.NewSource(time.Now().UnixNano())).Int()
-	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 	imgName := fmt.Sprintf("log/%d.png", r)
+
+	if len(args) > 0 {
+		path := path.Join(args...)
+		imgName = fmt.Sprintf("log/%s/%d.png", path, r)
+	}
+
+	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 	robotgo.SaveBitmap(bitmap, imgName)
 
 	return r
