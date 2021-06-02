@@ -145,7 +145,7 @@ func firstCard() {
 		return
 	}
 
-	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("OK.png"))
+	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("okNewTipOK.png"))
 	if !okNewTipSucc {
 		reStart()
 		return
