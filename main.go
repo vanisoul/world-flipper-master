@@ -367,18 +367,20 @@ func firstCard() {
 
 func tenCap() {
 	robotgo.Sleep(10)
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	bigRoleMain()
-	robotgo.Sleep(10)
-	leftMouseClickImg(GetSystemImg("repOK.png"))
+	for {
+		bigRoleMain()
+		//選單
+		menuSucc := findscreen(GetSystemImg("menu.png"))
+		if menuSucc {
+			break
+		}
+		repOKSucc, rx, ry := whilescreen(GetSystemImg("repOK.png"))
+		if repOKSucc {
+			robotgo.MoveClick(rx, ry)
+			break
+		}
+
+	}
 }
 
 func bigRoleMain() bool {
@@ -389,7 +391,8 @@ func bigRoleMain() bool {
 		return false
 	} else {
 		analyzeRoleImg("big")
-		leftMouseClickImg(GetSystemImg("NEW.png"))
+		_, x, y := whilescreenbase(GetSystemImg("NEW.png"), 40, 0.1)
+		robotgo.MoveClick(x, y)
 		return true
 	}
 }

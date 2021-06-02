@@ -125,5 +125,6 @@ func checkImgSaveImg(fullImg string) bool {
 		savescreen(thisID)
 		return true
 	}
+	savescreen(thisID)
 	return false
 }
