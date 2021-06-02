@@ -7,13 +7,14 @@ import (
 )
 
 func main() {
-
-	//初始化設定 未來要判斷視窗位置
-	infoScreen()
-	//初始化ID
-	infoID()
-	//首抽流程 其中一步失敗都會出來
-	firstCard()
+	for {
+		//初始化設定 未來要判斷視窗位置
+		infoScreen()
+		//初始化ID
+		infoID()
+		//首抽流程 其中一步失敗都會出來
+		firstCard()
+	}
 }
 
 func firstCard() {
