@@ -391,7 +391,7 @@ func bigRoleMain() bool {
 		return false
 	} else {
 		analyzeRoleImg("big")
-		_, x, y := whilescreenbase(GetSystemImg("NEW.png"), 40, 0.1)
+		_, x, y := whilescreenbase(GetSystemImg("NEW.png"), 25, 0.1)
 		robotgo.MoveClick(x, y)
 		return true
 	}
