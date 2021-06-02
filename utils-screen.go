@@ -77,10 +77,10 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 		fx, fy := robotgo.FindBitmap(bit_map, tmp_bitmap, matchNumber)
 		if fx != -1 && fy != -1 {
 			succ = true
-			x = fx + (imgw / 2)
-			y = fy + (imgh / 2)
-			log.Infof("whilescreenbase-Success, count_tmp: %d, x:%d, y:%d", count_tmp, fx, fy)
-			setLog("whilescreenbase", "尋找圖片成功", fmt.Sprintf("img: %s, count_tmp:%d, x:%d, y:%d", fullimg, count_tmp, fx, fy))
+			x = fx + (imgw / 2) + infox
+			y = fy + (imgh / 2) + infoy
+			log.Infof("whilescreenbase-Success, count_tmp: %d, x:%d, y:%d", count_tmp, x, y)
+			setLog("whilescreenbase", "尋找圖片成功", fmt.Sprintf("img: %s, count_tmp:%d, x:%d, y:%d", fullimg, count_tmp, x, y))
 			return
 		}
 		log.Infof("whilescreenbase-wait, count_tmp: %d", count_tmp)

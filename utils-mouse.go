@@ -18,7 +18,7 @@ func leftMouseClickImgMany(matchNumber float64, fullImgs ...string) bool {
 	for _, fullimg := range fullImgs {
 		succ, x, y := whilescreenbase(fullimg, 2, matchNumber)
 		if succ {
-			robotgo.MoveMouse(infox+x, infoy+y)
+			robotgo.MoveMouse(x, y)
 			leftMouseClick()
 			return true
 		}
@@ -37,7 +37,7 @@ func leftMouseClickImg(fullimg string, args ...float64) bool {
 
 	succ, x, y := whilescreen(fullimg, matchNumber)
 	if succ {
-		robotgo.MoveMouse(infox+x, infoy+y)
+		robotgo.MoveMouse(x, y)
 		leftMouseClick()
 		return true
 	}
