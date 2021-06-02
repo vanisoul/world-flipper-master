@@ -206,7 +206,7 @@ func firstCard() {
 	}
 
 	// 點選轉蛋
-	capsuleSucc := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+	capsuleSucc := leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 	if !capsuleSucc {
 		reStart()
 		return
