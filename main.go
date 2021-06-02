@@ -1,15 +1,11 @@
 package main
 
-import (
-	"math/rand"
-	"strconv"	"time"
-)
-
-
 func main() {
 
 	//初始化設定 未來要判斷視窗位置
 	infoScreen()
+	//初始化ID
+	infoID()
 	//首抽流程 其中一步失敗都會出來
 	firstCard()
 }
@@ -101,9 +97,24 @@ func firstCard() {
 		return
 	}
 
-	// 截圖下來
-	thisID = strconv.Itoa(rand.New(rand.NewSource(time.Now().UnixNano())).Int())
-	savescreen([]string{thisID}...)
+	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
+	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
+	if !newSucc {
+		reStart()
+		return
+	}
+	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("OK.png"))
+	if !okNewTipSucc {
+		reStart()
+		return
+	}
+
+	//回到轉蛋首頁
+	goBackCapsuleSucc := leftMouseClickImg(GetSystemImg("goBackCapsule.png"))
+	if !goBackCapsuleSucc {
+		reStart()
+		return
+	}
 
 }
 
