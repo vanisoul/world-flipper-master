@@ -119,7 +119,7 @@ func setThree(roleNames ...string) {
 }
 
 //輸出結算Log
-func outputLog() {
+func outputRoleLog() {
 	setLog("ID", "本次ID", thisID)
 	setLog("fiveRole", "五星角", strings.Join(fiveRole, ", "))
 	setLog("fourRole", "四星角", strings.Join(fourRole, ", "))
