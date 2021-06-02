@@ -370,11 +370,11 @@ func tenCap() {
 	for {
 		bigRoleMain()
 		//選單
-		menuSucc := findscreen(GetSystemImg("menu.png"))
+		menuSucc, _, _ := whilescreenbase(GetSystemImg("menu.png"), 1, 0.01)
 		if menuSucc {
 			break
 		}
-		repOKSucc, rx, ry := whilescreen(GetSystemImg("repOK.png"))
+		repOKSucc, rx, ry := whilescreenbase(GetSystemImg("repOK.png"), 1, 0.01)
 		if repOKSucc {
 			robotgo.MoveClick(rx, ry)
 			break
