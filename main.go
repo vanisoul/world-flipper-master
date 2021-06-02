@@ -98,6 +98,7 @@ func firstCard() {
 	}
 
 	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
+	// 並且如果有NEW 就解析人物 大圖
 	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
 	if !newSucc {
 		reStart()
