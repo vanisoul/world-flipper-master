@@ -70,7 +70,8 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 	log.Infof("whilescreenbase, fullimg: %s", fullimg)
 	log.Infof("whilescreenbase, count: %d", count)
 	log.Infof("whilescreenbase, matchNumber: %d", matchNumber)
-	for count > 0 {
+	count_tmp := 0
+	for count_tmp < count {
 		tmp_bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 		defer robotgo.FreeBitmap(tmp_bitmap)
 		fx, fy := robotgo.FindBitmap(bit_map, tmp_bitmap, matchNumber)
@@ -80,18 +81,18 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 			x = fx + (imgw / 2)
 			y = fy + (imgh / 2)
 			log.Infof("whilescreenbase-Success, x:%d, y:%d", fx, fy)
-			setLog("whilescreenbase", "尋找圖片成功", fmt.Sprintf("img: %s, x:%d, y:%d", fullimg, fx, fy))
+			setLog("whilescreenbase", "尋找圖片成功", fmt.Sprintf("img: %s, count_tmp:%d, x:%d, y:%d", fullimg, count_tmp, fx, fy))
 			return
 		}
-		setLog("whilescreenbase", "尋找圖片中", fmt.Sprintf("img: %s, count:%d", fullimg, count))
+		setLog("whilescreenbase", "尋找圖片中", fmt.Sprintf("img: %s, count_tmp:%d", fullimg, count_tmp))
 		robotgo.Sleep(1)
-		count = count - 1
-		if count == 0 {
+		count_tmp = count_tmp + 1
+		if count_tmp == count {
 			succ = false
 			x = -1
 			y = -1
 			log.Infof("whilescreenbase-error")
-			setLog("whilescreenbase", "尋找圖片失敗", fmt.Sprintf("img: %s, count:%d", fullimg, count))
+			setLog("whilescreenbase", "尋找圖片失敗", fmt.Sprintf("img: %s, count_tmp:%d", fullimg, count_tmp))
 			return
 		}
 	}
