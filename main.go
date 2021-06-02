@@ -179,7 +179,7 @@ func firstCard() {
 	}
 
 	//切換到首頁
-	priSucc := leftMouseClickImgMany(0.01, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
+	priSucc := leftMouseClickImgMany(0.2, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
 	if !priSucc {
 		reStart()
 		return
