@@ -21,7 +21,7 @@ func leftMouseClickImg(fullimg string, args ...float64) bool {
 
 	succ, x, y := whilescreen(fullimg, matchNumber)
 	if succ {
-		robotgo.MoveMouse(x, y)
+		robotgo.MoveMouse(infox+x, infoy+y)
 		leftMouseClick()
 		return true
 	}

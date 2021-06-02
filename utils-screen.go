@@ -1,8 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"image"
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/go-vgo/robotgo"
 	"github.com/labstack/gommon/log"
@@ -66,11 +69,11 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 	log.Infof("whilescreenbase, fullimg: %s", fullimg)
 	log.Infof("whilescreenbase, count: %d", count)
 	log.Infof("whilescreenbase, matchNumber: %d", matchNumber)
-	for {
+	for count > 0 {
 		tmp_bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 		defer robotgo.FreeBitmap(tmp_bitmap)
 		fx, fy := robotgo.FindBitmap(bit_map, tmp_bitmap, matchNumber)
-
+		log.Infof("whilescreenbase, count: %d", count)
 		if fx != -1 && fy != -1 {
 			succ = true
 			x = fx + (imgw / 2)
@@ -78,6 +81,7 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 			log.Infof("whilescreenbase-Success, x:%d, y:%d", fx, fy)
 			return
 		}
+		robotgo.Sleep(1)
 		count = count - 1
 		if count == 0 {
 			succ = false
@@ -87,5 +91,16 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 			return
 		}
 	}
+	return
+}
 
+//儲存判斷的視窗
+func getscreen() int {
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano())).Int()
+	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
+	imgName := fmt.Sprintf("log/%d.png", r)
+	robotgo.SaveBitmap(bitmap, imgName)
+
+	return r
 }
