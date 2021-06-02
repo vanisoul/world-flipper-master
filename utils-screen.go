@@ -121,8 +121,7 @@ func savescreen(args ...string) int {
 func checkImgSaveImg(fullImg string) bool {
 	succ := findscreen(fullImg, 0.1)
 	if succ {
-		path := []string{thisID}
-		savescreen(path...)
+		savescreen(thisID)
 		return true
 	}
 	return false

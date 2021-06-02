@@ -10,6 +10,22 @@ func rightMouseClick() {
 	robotgo.MouseClick("right")
 }
 
+//左鍵點擊多圖片的其中一張正中間 |
+//fullImgs 多圖片路徑 |
+//matchNumber 匹配程度
+func leftMouseClickImgMany(matchNumber float64, fullImgs ...string) bool {
+
+	for _, fullimg := range fullImgs {
+		succ, x, y := whilescreenbase(fullimg, 2, matchNumber)
+		if succ {
+			robotgo.MoveMouse(infox+x, infoy+y)
+			leftMouseClick()
+			return true
+		}
+	}
+	return false
+}
+
 //左鍵點擊圖片正中間 |
 //fullimg 圖片路徑 |
 //args[0] 匹配程度

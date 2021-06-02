@@ -1,6 +1,10 @@
 package main
 
-import "github.com/go-vgo/robotgo"
+import (
+	"fmt"
+
+	"github.com/go-vgo/robotgo"
+)
 
 func main() {
 
@@ -135,14 +139,10 @@ func firstCard() {
 
 	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
 	// 並且如果有NEW 就解析人物 大圖
-	robotgo.Sleep(5)
-	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
-	if !newSucc {
+	bigR1Succ := bigRoleMain()
+	if !bigR1Succ {
 		reStart()
 		return
-	} else {
-		analyzeRoleImg("big")
-		leftMouseClickImg(GetSystemImg("NEW.png"))
 	}
 
 	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("OK.png"))
@@ -158,6 +158,240 @@ func firstCard() {
 		return
 	}
 
+	//上市禮物1500寶石
+	giftSucc := checkImgClickOtherImg(GetSystemImg("gift.png"), GetSystemImg("closeGift.png"))
+	if !giftSucc {
+		reStart()
+		return
+	}
+	//又跳人物
+	bigR2Succ := bigRoleMain()
+	if !bigR2Succ {
+		reStart()
+		return
+	}
+
+	//開始冒險
+	giftendSucc := checkImgClickOtherImg(GetSystemImg("giftend.png"), GetSystemImg("OK3.png"))
+	if !giftendSucc {
+		reStart()
+		return
+	}
+
+	//切換到首頁
+	priSucc := leftMouseClickImgMany(0.01, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
+	if !priSucc {
+		reStart()
+		return
+	}
+
+	//獎勵領取
+	checkGiftSucc := leftMouseClickImg(GetSystemImg("checkGift.png"))
+	if !checkGiftSucc {
+		reStart()
+		return
+	}
+
+	//天獎勵領取
+	dayCheckGiftSucc := leftMouseClickImg(GetSystemImg("dayCheckGift.png"))
+	if !dayCheckGiftSucc {
+		reStart()
+		return
+	}
+
+	//點信箱
+	mailSucc := leftMouseClickImg(GetSystemImg("mail.png"))
+	if !mailSucc {
+		reStart()
+		return
+	}
+
+	//全部領取
+	allTakeSucc := leftMouseClickImg(GetSystemImg("allTake.png"))
+	if !allTakeSucc {
+		reStart()
+		return
+	}
+	takeYesSucc := leftMouseClickImg(GetSystemImg("takeYes.png"))
+	if !takeYesSucc {
+		reStart()
+		return
+	}
+
+	//關閉信箱
+	okmailSucc := checkImgClickOtherImg(GetSystemImg("okmail.png"), GetSystemImg("closemail.png"))
+	if !okmailSucc {
+		reStart()
+		return
+	}
+
+	//點選轉蛋
+	capsuleSucc := leftMouseClickImg(GetSystemImg("capsule.png"))
+	if !capsuleSucc {
+		reStart()
+		return
+	}
+
+	//十抽
+	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	if !tenCapsuleSucc {
+		reStart()
+		return
+	}
+	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	if !checkCapSucc {
+		reStart()
+		return
+	}
+	//處理那10抽
+	tenCap()
+
+	//點選轉蛋
+	capsuleSucc1 := leftMouseClickImg(GetSystemImg("capsule.png"))
+	if !capsuleSucc1 {
+		reStart()
+		return
+	}
+
+	//十抽
+	tenCapsuleSucc1 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	if !tenCapsuleSucc1 {
+		reStart()
+		return
+	}
+	checkCapSucc1 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	if !checkCapSucc1 {
+		reStart()
+		return
+	}
+	//處理那10抽
+	tenCap()
+
+	//十抽
+	tenCapsuleSucc2 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	if !tenCapsuleSucc2 {
+		reStart()
+		return
+	}
+	checkCapSucc2 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	if !checkCapSucc2 {
+		reStart()
+		return
+	}
+	//處理那10抽
+	tenCap()
+
+	//選單
+	menuSucc := leftMouseClickImg(GetSystemImg("menu.png"))
+	if !menuSucc {
+		reStart()
+		return
+	}
+
+	//繼承 inherit
+	inheritSucc := leftMouseClickImg(GetSystemImg("inherit.png"))
+	if !inheritSucc {
+		reStart()
+		return
+	}
+	//繼承資料 inheritText
+	inheritTextSucc := leftMouseClickImg(GetSystemImg("inheritText.png"))
+	if !inheritTextSucc {
+		reStart()
+		return
+	}
+
+	//繼承資料 inheritNext
+	inheritNextSucc := leftMouseClickImg(GetSystemImg("inheritNext.png"))
+	if !inheritNextSucc {
+		reStart()
+		return
+	}
+
+	//idandpwd
+	idandpwdSucc := leftMouseClickImg(GetSystemImg("idandpwd.png"))
+	if !idandpwdSucc {
+		reStart()
+		return
+	}
+	//idandpwdOK
+	idandpwdOKSucc := leftMouseClickImg(GetSystemImg("idandpwdOK.png"))
+	if !idandpwdOKSucc {
+		reStart()
+		return
+	}
+	//inheritNextText
+	inheritNextTextSucc := leftMouseClickImg(GetSystemImg("inheritNextText.png"))
+	if !inheritNextTextSucc {
+		reStart()
+		return
+	}
+	//enterPWD
+	//設定密碼
+	enterPWDSucc, ep1_x, ep1_y := whilescreen(GetSystemImg("enterPWD.png"), 0.1)
+	if !enterPWDSucc {
+		reStart()
+		return
+	}
+	textLocation(ep1_x, ep1_y, fmt.Sprintf("pWd%s", thisID))
+	enterPWD2Succ, ep2_x, ep2_y := whilescreen(GetSystemImg("enterPWD2.png"), 0.1)
+	if !enterPWD2Succ {
+		reStart()
+		return
+	}
+	textLocation(ep2_x, ep2_y, fmt.Sprintf("pWd%s", thisID))
+
+	//隱私權OK
+	inheritOKSucc := leftMouseClickImg(GetSystemImg("inheritOK.png"))
+	if !inheritOKSucc {
+		reStart()
+		return
+	}
+
+	//inheritOKnext
+	inheritOKnextSucc := leftMouseClickImg(GetSystemImg("inheritOKnext.png"))
+	if !inheritOKnextSucc {
+		reStart()
+		return
+	}
+	savescreen(thisID)
+
+	//endOK
+	endOKSucc := leftMouseClickImg(GetSystemImg("endOK.png"))
+	if !endOKSucc {
+		reStart()
+		return
+	}
+	reStart()
+}
+
+func tenCap() {
+	robotgo.Sleep(10)
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	bigRoleMain()
+	robotgo.Sleep(10)
+	leftMouseClickImg(GetSystemImg("repOK.png"))
+}
+
+func bigRoleMain() bool {
+	robotgo.Sleep(5)
+	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
+	if !newSucc {
+		leftMouseClick()
+		return false
+	} else {
+		analyzeRoleImg("big")
+		leftMouseClickImg(GetSystemImg("NEW.png"))
+		return true
+	}
 }
 
 //遇到不如預期時 離開這次流程前 需要做的事情
