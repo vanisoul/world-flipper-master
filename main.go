@@ -139,11 +139,7 @@ func firstCard() {
 
 	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
 	// 並且如果有NEW 就解析人物 大圖
-	bigR1Succ := bigRoleMain()
-	if !bigR1Succ {
-		reStart()
-		return
-	}
+	tenCap()
 
 	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("okNewTipOK.png"))
 	if !okNewTipSucc {
@@ -165,11 +161,7 @@ func firstCard() {
 		return
 	}
 	//又跳人物
-	bigR2Succ := bigRoleMain()
-	if !bigR2Succ {
-		reStart()
-		return
-	}
+	tenCap()
 
 	//開始冒險
 	giftendSucc := checkImgClickOtherImg(GetSystemImg("giftend.png"), GetSystemImg("OK3.png"))
@@ -412,8 +404,8 @@ func bigRoleMain() bool {
 //遇到不如預期時 離開這次流程前 需要做的事情
 func reStart() {
 	//關閉遊戲
-	leftMouseClickImg(GetSystemImg("appSmall.png"))
-	_, x, y := whilescreen(GetSystemImg("smallappLogo.png"))
+	leftMouseClickImg(GetSystemImg("appSmall.png"), 0.1)
+	_, x, y := whilescreen(GetSystemImg("smallappLogo.png"), 0.05)
 	robotgo.MoveMouse(x, y)
 	robotgo.MouseToggle(`down`, `left`)
 	robotgo.Sleep(1)
