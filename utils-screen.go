@@ -119,8 +119,12 @@ func savescreen(args ...string) int {
 }
 
 //看到指定圖片 就截圖存放
-func checkImgSaveImg(fullImg string) bool {
-	succ := findscreen(fullImg, 0.1)
+func checkImgSaveImg(fullImg string, count int, args ...float64) bool {
+	matchNumber := 0.01
+	if len(args) == 1 {
+		matchNumber = args[0]
+	}
+	succ, _, _ := whilescreenbase(fullImg, count, matchNumber)
 	if succ {
 		savescreen(thisID)
 		return true

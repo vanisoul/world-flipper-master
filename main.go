@@ -246,29 +246,29 @@ func firstCard() {
 	// //處理那10抽
 	// tenCap()
 
-	//點選轉蛋
-	capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc1 {
-		reStart()
-		return
-	}
+	// //點選轉蛋
+	// capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+	// if !capsuleSucc1 {
+	// 	reStart()
+	// 	return
+	// }
 
-	//十抽
-	tenCapsuleSucc1 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
-	if !tenCapsuleSucc1 {
-		reStart()
-		return
-	}
-	checkCapSucc1 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
-	if !checkCapSucc1 {
-		reStart()
-		return
-	}
+	// //十抽
+	// tenCapsuleSucc1 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	// if !tenCapsuleSucc1 {
+	// 	reStart()
+	// 	return
+	// }
+	// checkCapSucc1 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	// if !checkCapSucc1 {
+	// 	reStart()
+	// 	return
+	// }
 	//處理那10抽
 	tenCap()
 
 	//點選轉蛋
-	capsuleSucc1 = leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+	capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 	if !capsuleSucc1 {
 		reStart()
 		return
@@ -392,13 +392,13 @@ func tenCap() {
 }
 
 func bigRoleMain() bool {
-	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
+	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"), 1, 0.1)
 	if !newSucc {
 		leftMouseClick()
 		return false
 	} else {
 		analyzeRoleImg("big")
-		_, x, y := whilescreenbase(GetSystemImg("NEW.png"), 25, 0.1)
+		_, x, y := whilescreenbase(GetSystemImg("NEW.png"), 1, 0.1)
 		robotgo.MoveMouse(x, y)
 		leftMouseClick()
 		return true
