@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/go-vgo/robotgo"
+	"github.com/labstack/gommon/log"
 )
 
 var thisID string = "0"
@@ -26,44 +27,74 @@ func infoID() {
 func analyzeRoleImg(typeImg string) {
 
 	if typeImg == "big" {
-		roleType, roleNames := analyzeRoleBig()
-		setRole(roleType, roleNames...)
+		roleArr := analyzeRoleBig()
+		setRole(roleArr)
 	}
 
 	if typeImg == "small" {
-		roleType, roleNames := analyzeRoleSmall()
-		setRole(roleType, roleNames...)
+		roleArr := analyzeRoleSmall()
+		setRole(roleArr)
 	}
 }
 
 //TODO 大圖小圖解析還沒處理
 
 //給予大圖片 回傳人物名稱 星數
-func analyzeRoleBig() (roleType int, roleNames []string) {
+func analyzeRoleBig() (res []Role) {
 	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 	defer robotgo.FreeBitmap(bitmap)
+	bigRoleConfig, err := LoadBigRoleConfig()
+	if err != nil {
+		log.Errorf("cannot load config:", err)
+		return
+	}
+	for _, RoleImg := range bigRoleConfig.RoleImgPair {
+		isRole, _, _ := whilescreenbase(getImgBig(RoleImg.ImgName), 2, 0.01)
+		if isRole {
+			p := Role{RoleType: RoleImg.RoleType, RoleName: RoleImg.RoleName}
+			res = append(res, p)
+			return
+		}
+	}
 
 	return
 }
 
 //給予多張小圖片 回傳人物名稱 星數
-func analyzeRoleSmall() (roleType int, roleNames []string) {
+func analyzeRoleSmall() (res []Role) {
 	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 	defer robotgo.FreeBitmap(bitmap)
+	smallRoleConfig, err := LoadSmallRoleConfig()
+	if err != nil {
+		log.Errorf("cannot load config:", err)
+		return
+	}
+	for _, RoleImg := range smallRoleConfig.RoleImgPair {
+		isRole, _, _ := whilescreenbase(getImgSmall(RoleImg.ImgName), 2, 0.01)
+		if isRole {
+			p := Role{RoleType: RoleImg.RoleType, RoleName: RoleImg.RoleName}
+			res = append(res, p)
+		}
+	}
 	return
 }
 
 //給予星數 + roleNames 自動放入該星數內容中
-func setRole(roleType int, roleNames ...string) {
-	if roleType == 5 {
-		setFive(roleNames...)
+func setRole(res []Role) {
+	for _, v := range res {
+		roleType := v.RoleType
+		roleName := v.RoleName
+		if roleType == 5 {
+			setFive(roleName)
+		}
+		if roleType == 4 {
+			setFour(roleName)
+		}
+		if roleType == 3 {
+			setThree(roleName)
+		}
 	}
-	if roleType == 4 {
-		setFour(roleNames...)
-	}
-	if roleType == 3 {
-		setThree(roleNames...)
-	}
+
 }
 
 //紀錄本次五星角色
@@ -93,4 +124,9 @@ func outputLog() {
 	setLog("fiveRole", "五星角", strings.Join(fiveRole, ", "))
 	setLog("fourRole", "四星角", strings.Join(fourRole, ", "))
 	setLog("threeRole", "三星角", strings.Join(threeRole, ", "))
+}
+
+type Role struct {
+	RoleType int    `mapstructure:"roleType"`
+	RoleName string `mapstructure:"roleName"`
 }

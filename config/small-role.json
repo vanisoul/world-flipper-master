@@ -1,6 +1,7 @@
 {
     "roleImgPair":[{
         "imgName":"0.png",
+        "roleType":5,
         "roleName":"大叔"
     }]
 }
