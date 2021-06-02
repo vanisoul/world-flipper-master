@@ -120,16 +120,6 @@ func setThree(roleNames ...string) {
 	}
 }
 
-//設定帳號(ID)
-func setID() {
-	id = ""
-}
-
-//設定密碼(pwd)
-func setPWD() {
-	pwd = ""
-}
-
 //輸出結算Log
 func outputRoleLog() {
 	setLog("r", "========本次r========", thisID)
