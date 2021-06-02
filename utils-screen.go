@@ -79,10 +79,11 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 			succ = true
 			x = fx + (imgw / 2)
 			y = fy + (imgh / 2)
-			log.Infof("whilescreenbase-Success, x:%d, y:%d", fx, fy)
+			log.Infof("whilescreenbase-Success, count_tmp: %d, x:%d, y:%d", count_tmp, fx, fy)
 			setLog("whilescreenbase", "尋找圖片成功", fmt.Sprintf("img: %s, count_tmp:%d, x:%d, y:%d", fullimg, count_tmp, fx, fy))
 			return
 		}
+		log.Infof("whilescreenbase-wait, count_tmp: %d", count_tmp)
 		setLog("whilescreenbase", "尋找圖片中", fmt.Sprintf("img: %s, count_tmp:%d", fullimg, count_tmp))
 		robotgo.Sleep(1)
 		count_tmp = count_tmp + 1
