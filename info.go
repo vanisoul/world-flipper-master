@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 var infox int = 0
 var infoy int = 0
 var infow int = 2000
@@ -15,7 +17,9 @@ func infoScreen() bool {
 		infoy = y - 40
 		infow = 600
 		infoh = 1050
+		setLog("infoScreen", "設定視窗位置成功", fmt.Sprintf("%d, %d, %d, %d", infox, infoy, infow, infoh))
 		return true
 	}
+	setLog("infoScreen", "設定視窗位置失敗", fmt.Sprintf("%d, %d, %d, %d", infox, infoy, infow, infoh))
 	return false
 }
