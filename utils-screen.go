@@ -107,8 +107,12 @@ func savescreen(args ...string) int {
 	imgName := fmt.Sprintf("log/%d.png", r)
 
 	if len(args) > 0 {
-		path := path.Join(args...)
-		imgName = fmt.Sprintf("log/%s/%d.png", path, r)
+		pathstr := path.Join(args...)
+		imgName = fmt.Sprintf("log/%s/%d.png", pathstr, r)
+		err := os.MkdirAll(path.Dir(imgName), os.ModePerm)
+		if err != nil {
+			log.Error(err)
+		}
 	}
 
 	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)

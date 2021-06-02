@@ -264,36 +264,36 @@ func firstCard() {
 	// 	reStart()
 	// 	return
 	// }
-	//處理那10抽
-	tenCap()
+	// //處理那10抽
+	// tenCap()
 
-	//點選轉蛋
-	capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc1 {
-		reStart()
-		return
-	}
+	// //點選轉蛋
+	// capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+	// if !capsuleSucc1 {
+	// 	reStart()
+	// 	return
+	// }
 
-	//十抽
-	tenCapsuleSucc2 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
-	if !tenCapsuleSucc2 {
-		reStart()
-		return
-	}
-	checkCapSucc2 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
-	if !checkCapSucc2 {
-		reStart()
-		return
-	}
-	//處理那10抽
-	tenCap()
+	// //十抽
+	// tenCapsuleSucc2 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	// if !tenCapsuleSucc2 {
+	// 	reStart()
+	// 	return
+	// }
+	// checkCapSucc2 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	// if !checkCapSucc2 {
+	// 	reStart()
+	// 	return
+	// }
+	// //處理那10抽
+	// tenCap()
 
-	//選單
-	menuSucc := leftMouseClickImg(GetSystemImg("menu.png"))
-	if !menuSucc {
-		reStart()
-		return
-	}
+	// //選單
+	// menuSucc := leftMouseClickImg(GetSystemImg("menu.png"))
+	// if !menuSucc {
+	// 	reStart()
+	// 	return
+	// }
 
 	//繼承 inherit
 	inheritSucc := leftMouseClickImg(GetSystemImg("inherit.png"))
