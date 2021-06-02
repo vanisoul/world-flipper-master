@@ -104,7 +104,7 @@ func firstCard() {
 		return
 	} else {
 		analyzeRoleImg("big")
-
+		leftMouseClickImg(GetSystemImg("NEW.png"))
 	}
 
 	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("OK.png"))

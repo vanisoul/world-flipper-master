@@ -12,6 +12,9 @@ import (
 
 var thisID string = "0"
 
+var id string
+var pwd string
+
 var fiveRole []string = []string{}
 var fourRole []string = []string{}
 var threeRole []string = []string{}
@@ -117,9 +120,21 @@ func setThree(roleNames ...string) {
 	}
 }
 
+//設定帳號(ID)
+func setID() {
+	id = ""
+}
+
+//設定密碼(pwd)
+func setPWD() {
+	pwd = ""
+}
+
 //輸出結算Log
 func outputRoleLog() {
-	setLog("ID", "本次ID", thisID)
+	setLog("r", "========本次r========", thisID)
+	setLog("id", "ID", id)
+	setLog("pwd", "pwd", pwd)
 	setLog("fiveRole", "五星角", strings.Join(fiveRole, ", "))
 	setLog("fourRole", "四星角", strings.Join(fourRole, ", "))
 	setLog("threeRole", "三星角", strings.Join(threeRole, ", "))
