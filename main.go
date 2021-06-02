@@ -158,13 +158,6 @@ func firstCard() {
 	//又跳人物
 	tenCap()
 
-	//開始冒險
-	giftendSucc := checkImgClickOtherImg(GetSystemImg("giftend.png"), GetSystemImg("OK3.png"))
-	if !giftendSucc {
-		reStart()
-		return
-	}
-
 	//切換到首頁
 	priSucc := leftMouseClickImgMany(0.2, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
 	if !priSucc {
