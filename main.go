@@ -1,5 +1,7 @@
 package main
 
+import "github.com/go-vgo/robotgo"
+
 func main() {
 
 	//初始化設定 未來要判斷視窗位置
@@ -11,6 +13,30 @@ func main() {
 }
 
 func firstCard() {
+	//清除資料 確保全新
+	mainDataSucc := checkImgClickOtherImg(GetSystemImg("main.png"), GetSystemImg("list.png"), nil, 0.1)
+	if !mainDataSucc {
+		reStart()
+		return
+	}
+	delDataSucc := leftMouseClickImg(GetSystemImg("delData.png"))
+	if !delDataSucc {
+		reStart()
+		return
+	}
+	redOK1Succ := leftMouseClickImg(GetSystemImg("redOK.png"))
+	if !redOK1Succ {
+		reStart()
+		return
+	}
+	robotgo.Sleep(2)
+	redOK2Succ := leftMouseClickImg(GetSystemImg("redOK2.png"))
+	if !redOK2Succ {
+		reStart()
+		return
+	}
+	robotgo.Sleep(10)
+
 	//進入遊戲
 	mainSucc := leftMouseClickImg(GetSystemImg("main.png"), 0.1)
 	if !mainSucc {
@@ -39,22 +65,32 @@ func firstCard() {
 		return
 	}
 
+	//故事大綱
+	OK2Succ := leftMouseClickImg(GetSystemImg("OK2.png"))
+	if !OK2Succ {
+		reStart()
+		return
+	}
+
 	//教學畫面 一直下一步
 	next1 := leftMouseClickImg(GetSystemImg("next.png"))
 	if !next1 {
 		reStart()
 		return
 	}
+	robotgo.Sleep(1)
 	next2 := leftMouseClickImg(GetSystemImg("next.png"))
 	if !next2 {
 		reStart()
 		return
 	}
+	robotgo.Sleep(1)
 	next3 := leftMouseClickImg(GetSystemImg("next.png"))
 	if !next3 {
 		reStart()
 		return
 	}
+	robotgo.Sleep(1)
 	next4 := leftMouseClickImg(GetSystemImg("next.png"))
 	if !next4 {
 		reStart()
@@ -99,6 +135,7 @@ func firstCard() {
 
 	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
 	// 並且如果有NEW 就解析人物 大圖
+	robotgo.Sleep(5)
 	newSucc := checkImgSaveImg(GetSystemImg("NEW.png"))
 	if !newSucc {
 		reStart()
@@ -125,7 +162,19 @@ func firstCard() {
 
 //遇到不如預期時 離開這次流程前 需要做的事情
 func reStart() {
+	//關閉遊戲
+	leftMouseClickImg(GetSystemImg("appSmall.png"))
+	_, x, y := whilescreen(GetSystemImg("smallappLogo.png"))
+	robotgo.MoveMouse(x, y)
+	robotgo.MouseToggle(`down`, `left`)
+	robotgo.Sleep(1)
+	robotgo.MoveMouseSmooth(x+1500, y)
+	robotgo.Sleep(1)
+	robotgo.MouseToggle(`up`, `left`)
 
+	//打開遊戲
+	leftMouseClickImg(GetSystemImg("appLogo.png"))
+	robotgo.Sleep(15)
 }
 
 // 確認初始化視窗位置是否正確

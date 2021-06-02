@@ -75,7 +75,6 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 		tmp_bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 		defer robotgo.FreeBitmap(tmp_bitmap)
 		fx, fy := robotgo.FindBitmap(bit_map, tmp_bitmap, matchNumber)
-		log.Infof("whilescreenbase, count: %d", count)
 		if fx != -1 && fy != -1 {
 			succ = true
 			x = fx + (imgw / 2)
