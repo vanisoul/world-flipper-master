@@ -142,12 +142,6 @@ func firstCard() {
 	// 並且如果有NEW 就解析人物 大圖
 	tenCap()
 
-	okNewTipSucc := checkImgClickOtherImg(GetSystemImg("okNewTip.png"), GetSystemImg("okNewTipOK.png"))
-	if !okNewTipSucc {
-		reStart()
-		return
-	}
-
 	//回到轉蛋首頁
 	goBackCapsuleSucc := leftMouseClickImg(GetSystemImg("goBackCapsule.png"))
 	if !goBackCapsuleSucc {
@@ -380,6 +374,12 @@ func tenCap() {
 		}
 		repOKSucc, rx, ry := whilescreenbase(GetSystemImg("repOK.png"), 1, 0.01)
 		if repOKSucc {
+			robotgo.MoveMouse(rx, ry)
+			leftMouseClick()
+			break
+		}
+		okNewTipOKSucc, rx, ry := whilescreenbase(GetSystemImg("okNewTipOK.png"), 1, 0.01)
+		if okNewTipOKSucc {
 			robotgo.MoveMouse(rx, ry)
 			leftMouseClick()
 			break
