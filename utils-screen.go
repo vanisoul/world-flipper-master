@@ -12,7 +12,7 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-var basewhilecount = 20
+var basewhilecount = 50
 
 // findscreen 多次尋找圖片
 // fullimg 圖片路徑
