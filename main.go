@@ -211,6 +211,7 @@ func firstCard() {
 		return
 	}
 
+	//幾次十抽
 	tcSucc1 := tenCap()
 	if !tcSucc1 {
 		reStart()
@@ -219,12 +220,6 @@ func firstCard() {
 
 	tcSucc2 := tenCap()
 	if !tcSucc2 {
-		reStart()
-		return
-	}
-
-	tcSucc3 := tenCap()
-	if !tcSucc3 {
 		reStart()
 		return
 	}
