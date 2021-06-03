@@ -153,7 +153,12 @@ func firstCard() {
 	}
 
 	//又跳人物
-	repOKSucc, rx, ry := whilescreenbase(GetSystemImg("repOK.png"), 25, 0.01)
+	iolesaSucc, iex, iey := whilescreenbase(GetSystemImg("iolesa.png"), 25, 0.01)
+	if iolesaSucc {
+		robotgo.MoveMouse(iex, iey)
+		leftMouseClick()
+	}
+	repOKSucc, rx, ry := whilescreenbase(GetSystemImg("iolesaOK.png"), 25, 0.01)
 	if repOKSucc {
 		robotgo.MoveMouse(rx, ry)
 		leftMouseClick()
@@ -314,35 +319,36 @@ func firstCard() {
 
 func tenCap() bool {
 	//點選轉蛋
-	capsuleSucc1 := leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc1 {
-		return false
-	}
+	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 
 	//十抽
-	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"), 0.1)
 	if !tenCapsuleSucc {
 		return false
 	}
-	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"), 0.1)
 	if !checkCapSucc {
 		return false
 	}
 	//處理那10抽
 	capSucc2 := caping()
-	if !capSucc2 {
-		return false
-	}
-
-	return true
+	return capSucc2
 }
 
 func caping() bool {
 	count := 300
 	for count > 0 {
 		leftMouseClick()
+		leftMouseClick()
+		leftMouseClick()
+		leftMouseClick()
+		recapSucc, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+		if recapSucc {
+			robotgo.MoveMouse(rx, ry)
+			leftMouseClick()
+		}
 		//回到轉蛋首頁
-		bakCapSucc, bcx, bcy := whilescreen(GetSystemImg("goBackCapsule.png"), 0.1)
+		bakCapSucc, bcx, bcy := whilescreenbase(GetSystemImg("goBackCapsule.png"), 1, 0.1)
 		if bakCapSucc {
 			savescreen(thisID)
 			robotgo.MoveMouse(bcx, bcy)
