@@ -325,14 +325,14 @@ func firstCard() {
 
 func tenCap() bool {
 
+	//點選轉蛋
+	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+
 	//選池
 	tgCapSucc := leftMouseClickImg(GetSystemImg("tgCap.png"), 0.1)
 	if !tgCapSucc {
 		robotgo.Sleep(3)
 	}
-
-	//點選轉蛋
-	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 
 	//十抽
 	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"), 0.2)
