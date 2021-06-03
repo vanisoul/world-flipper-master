@@ -239,9 +239,15 @@ func firstCard() {
 	//繼承 inherit
 	inheritSucc := leftMouseClickImg(GetSystemImg("inherit.png"))
 	if !inheritSucc {
-		reStart()
-		return
+		menuSucc := leftMouseClickImg(GetSystemImg("menu.png"))
+		if !menuSucc {
+			reStart()
+			return
+		}
+		robotgo.Sleep(1)
+		leftMouseClickImg(GetSystemImg("inherit.png"))
 	}
+
 	//繼承資料 inheritText
 	inheritTextSucc := leftMouseClickImg(GetSystemImg("inheritText.png"))
 	if !inheritTextSucc {
@@ -342,14 +348,25 @@ func caping() bool {
 		leftMouseClick()
 		leftMouseClick()
 		leftMouseClick()
-		recapSucc, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+		recapSucc, _, _ := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
 		if recapSucc {
-			robotgo.MoveMouse(rx, ry)
-			leftMouseClick()
+			robotgo.Sleep(1)
+			recapSucc2, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+			if recapSucc2 {
+				robotgo.MoveMouse(rx, ry)
+				leftMouseClick()
+			}
 		}
 		//回到轉蛋首頁
 		bakCapSucc, bcx, bcy := whilescreenbase(GetSystemImg("goBackCapsule.png"), 1, 0.1)
 		if bakCapSucc {
+			robotgo.Sleep(1)
+			recapSucc, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+			if recapSucc {
+				robotgo.MoveMouse(rx, ry)
+				leftMouseClick()
+			}
+			robotgo.Sleep(1)
 			savescreen(thisID)
 			robotgo.MoveMouse(bcx, bcy)
 			leftMouseClick()
