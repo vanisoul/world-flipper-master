@@ -18,8 +18,6 @@ func main() {
 }
 
 func firstCard() {
-	tenCap()
-	return
 
 	//清除資料 確保全新
 	mainDataSucc := checkImgClickOtherImg(GetSystemImg("main.png"), GetSystemImg("list.png"), nil, 0.1)
