@@ -179,7 +179,7 @@ func firstCard() {
 	}
 
 	//天獎勵領取
-	dayCheckGiftSucc := leftMouseClickImg(GetSystemImg("dayCheckGift.png"))
+	dayCheckGiftSucc := leftMouseClickImg(GetSystemImg("dayCheckGift.png"), 0.1)
 	if !dayCheckGiftSucc {
 		reStart()
 		return
@@ -335,7 +335,7 @@ func tenCap() bool {
 	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 
 	//十抽
-	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"), 0.1)
+	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"), 0.2)
 	if !tenCapsuleSucc {
 		return false
 	}
