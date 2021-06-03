@@ -18,6 +18,9 @@ func main() {
 }
 
 func firstCard() {
+	tenCap()
+	return
+
 	//清除資料 確保全新
 	mainDataSucc := checkImgClickOtherImg(GetSystemImg("main.png"), GetSystemImg("list.png"), nil, 0.1)
 	if !mainDataSucc {
@@ -326,10 +329,10 @@ func tenCap() bool {
 	robotgo.Sleep(3)
 	//選池
 	tgCapSucc, tgx, tgy := whilescreen(GetSystemImg("tgCap.png"), 0.1)
-	if !tgCapSucc {
+	if tgCapSucc {
 		robotgo.MoveMouse(tgx, tgy)
 		leftMouseClick()
-		robotgo.Sleep(3)
+		robotgo.Sleep(5)
 	}
 
 	//十抽
