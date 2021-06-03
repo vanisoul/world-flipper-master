@@ -410,6 +410,8 @@ func bigRoleMain() bool {
 
 //遇到不如預期時 離開這次流程前 需要做的事情
 func reStart() {
+	savescreen(thisID)
+
 	//關閉遊戲
 	leftMouseClickImg(GetSystemImg("appSmall.png"), 0.1)
 	_, x, y := whilescreen(GetSystemImg("smallappLogo.png"), 0.05)
