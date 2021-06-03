@@ -328,9 +328,12 @@ func tenCap() bool {
 	//點選轉蛋
 	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 
+	robotgo.Sleep(3)
 	//選池
-	tgCapSucc := leftMouseClickImg(GetSystemImg("tgCap.png"), 0.1)
+	tgCapSucc, tgx, tgy := whilescreen(GetSystemImg("tgCap.png"), 0.1)
 	if !tgCapSucc {
+		robotgo.MoveMouse(tgx, tgy)
+		leftMouseClick()
 		robotgo.Sleep(3)
 	}
 
