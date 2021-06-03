@@ -324,6 +324,13 @@ func firstCard() {
 }
 
 func tenCap() bool {
+
+	//選池
+	tgCapSucc := leftMouseClickImg(GetSystemImg("tgCap.png"), 0.1)
+	if !tgCapSucc {
+		robotgo.Sleep(3)
+	}
+
 	//點選轉蛋
 	leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
 
@@ -348,10 +355,19 @@ func caping() bool {
 		leftMouseClick()
 		leftMouseClick()
 		leftMouseClick()
-		recapSucc, _, _ := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+		recapSucc, _, _ := whilescreenbase(GetSystemImg("recap.png"), 1, 0.05)
 		if recapSucc {
 			robotgo.Sleep(1)
-			recapSucc2, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.1)
+			recapSucc2, rx, ry := whilescreenbase(GetSystemImg("recap.png"), 1, 0.05)
+			if recapSucc2 {
+				robotgo.MoveMouse(rx, ry)
+				leftMouseClick()
+			}
+		}
+		recapSucc1, _, _ := whilescreenbase(GetSystemImg("yysa.png"), 1, 0.1)
+		if recapSucc1 {
+			robotgo.Sleep(1)
+			recapSucc2, rx, ry := whilescreenbase(GetSystemImg("yysa.png"), 1, 0.1)
 			if recapSucc2 {
 				robotgo.MoveMouse(rx, ry)
 				leftMouseClick()
