@@ -138,13 +138,9 @@ func firstCard() {
 		return
 	}
 
-	// 截圖下來 第一隻肯定都有NEW 沒有代表出錯
-	// 並且如果有NEW 就解析人物 大圖
-	tenCap()
-
-	//回到轉蛋首頁
-	goBackCapsuleSucc := leftMouseClickImg(GetSystemImg("goBackCapsule.png"))
-	if !goBackCapsuleSucc {
+	// 第一抽
+	capSucc1 := caping()
+	if !capSucc1 {
 		reStart()
 		return
 	}
@@ -155,11 +151,16 @@ func firstCard() {
 		reStart()
 		return
 	}
+
 	//又跳人物
-	tenCap()
+	repOKSucc, rx, ry := whilescreenbase(GetSystemImg("repOK.png"), 25, 0.01)
+	if repOKSucc {
+		robotgo.MoveMouse(rx, ry)
+		leftMouseClick()
+	}
 
 	//切換到首頁
-	priSucc := leftMouseClickImgMany(0.2, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
+	priSucc := leftMouseClickImgMany(0.4, []string{GetSystemImg("primary1.png"), GetSystemImg("primary2.png"), GetSystemImg("primary3.png"), GetSystemImg("primary4.png")}...)
 	if !priSucc {
 		reStart()
 		return
@@ -205,68 +206,23 @@ func firstCard() {
 		return
 	}
 
-	// 點選轉蛋
-	capsuleSucc := leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc {
+	tcSucc1 := tenCap()
+	if !tcSucc1 {
 		reStart()
 		return
 	}
 
-	//十抽
-	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
-	if !tenCapsuleSucc {
-		reStart()
-		return
-	}
-	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
-	if !checkCapSucc {
-		reStart()
-		return
-	}
-	//處理那10抽
-	tenCap()
-
-	//點選轉蛋
-	capsuleSucc1 := leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc1 {
+	tcSucc2 := tenCap()
+	if !tcSucc2 {
 		reStart()
 		return
 	}
 
-	//十抽
-	tenCapsuleSucc1 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
-	if !tenCapsuleSucc1 {
+	tcSucc3 := tenCap()
+	if !tcSucc3 {
 		reStart()
 		return
 	}
-	checkCapSucc1 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
-	if !checkCapSucc1 {
-		reStart()
-		return
-	}
-	//處理那10抽
-	tenCap()
-
-	//點選轉蛋
-	capsuleSucc1 = leftMouseClickImgMany(0.01, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
-	if !capsuleSucc1 {
-		reStart()
-		return
-	}
-
-	//十抽
-	tenCapsuleSucc2 := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
-	if !tenCapsuleSucc2 {
-		reStart()
-		return
-	}
-	checkCapSucc2 := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
-	if !checkCapSucc2 {
-		reStart()
-		return
-	}
-	//處理那10抽
-	tenCap()
 
 	//選單
 	menuSucc := leftMouseClickImg(GetSystemImg("menu.png"))
@@ -356,29 +312,47 @@ func firstCard() {
 	reStart()
 }
 
-func tenCap() {
-	robotgo.Sleep(10)
-	for {
-		bigRoleMain()
-		//選單
-		menuSucc, _, _ := whilescreenbase(GetSystemImg("menu.png"), 1, 0.01)
-		if menuSucc {
-			break
-		}
-		repOKSucc, rx, ry := whilescreenbase(GetSystemImg("repOK.png"), 1, 0.01)
-		if repOKSucc {
-			robotgo.MoveMouse(rx, ry)
-			leftMouseClick()
-			break
-		}
-		okNewTipOKSucc, rx, ry := whilescreenbase(GetSystemImg("okNewTipOK.png"), 1, 0.01)
-		if okNewTipOKSucc {
-			robotgo.MoveMouse(rx, ry)
-			leftMouseClick()
-			break
-		}
-
+func tenCap() bool {
+	//點選轉蛋
+	capsuleSucc1 := leftMouseClickImgMany(0.1, GetSystemImg("capsule2.png"), GetSystemImg("capsule.png"))
+	if !capsuleSucc1 {
+		return false
 	}
+
+	//十抽
+	tenCapsuleSucc := leftMouseClickImg(GetSystemImg("tenCapsule.png"))
+	if !tenCapsuleSucc {
+		return false
+	}
+	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"))
+	if !checkCapSucc {
+		return false
+	}
+	//處理那10抽
+	capSucc2 := caping()
+	if !capSucc2 {
+		return false
+	}
+
+	return true
+}
+
+func caping() bool {
+	count := 300
+	for count > 0 {
+		leftMouseClick()
+		//回到轉蛋首頁
+		bakCapSucc, bcx, bcy := whilescreen(GetSystemImg("goBackCapsule.png"), 0.1)
+		if bakCapSucc {
+			savescreen(thisID)
+			robotgo.MoveMouse(bcx, bcy)
+			leftMouseClick()
+			return true
+		}
+		robotgo.Sleep(1)
+		count = count - 1
+	}
+	return false
 }
 
 func bigRoleMain() bool {
