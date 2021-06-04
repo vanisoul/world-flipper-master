@@ -365,7 +365,7 @@ func tenCap() bool {
 func caping() bool {
 	count := 300
 	for count > 0 {
-		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2)+110)
 		leftMouseClick()
 		leftMouseClick()
 		ocSucc, _, _ := whilescreenbase(GetSystemImg("oneCapOK.png"), 1, 0.05)
@@ -377,7 +377,7 @@ func caping() bool {
 				leftMouseClick()
 			}
 		}
-		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2)+110)
 		leftMouseClick()
 		leftMouseClick()
 		recapSucc, _, _ := whilescreenbase(GetSystemImg("recap.png"), 1, 0.05)
@@ -389,7 +389,7 @@ func caping() bool {
 				leftMouseClick()
 			}
 		}
-		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2)+110)
 		leftMouseClick()
 		leftMouseClick()
 		recapSucc1, _, _ := whilescreenbase(GetSystemImg("yysa.png"), 1, 0.1)
