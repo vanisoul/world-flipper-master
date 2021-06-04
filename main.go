@@ -368,8 +368,6 @@ func caping() bool {
 		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
 		leftMouseClick()
 		leftMouseClick()
-		leftMouseClick()
-		leftMouseClick()
 		ocSucc, _, _ := whilescreenbase(GetSystemImg("oneCapOK.png"), 1, 0.05)
 		if ocSucc {
 			robotgo.Sleep(1)
@@ -379,6 +377,9 @@ func caping() bool {
 				leftMouseClick()
 			}
 		}
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		leftMouseClick()
+		leftMouseClick()
 		recapSucc, _, _ := whilescreenbase(GetSystemImg("recap.png"), 1, 0.05)
 		if recapSucc {
 			robotgo.Sleep(1)
@@ -388,6 +389,9 @@ func caping() bool {
 				leftMouseClick()
 			}
 		}
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		leftMouseClick()
+		leftMouseClick()
 		recapSucc1, _, _ := whilescreenbase(GetSystemImg("yysa.png"), 1, 0.1)
 		if recapSucc1 {
 			robotgo.Sleep(1)
