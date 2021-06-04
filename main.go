@@ -338,7 +338,7 @@ func tenCap() bool {
 
 	robotgo.Sleep(3)
 	//選池
-	tgCapSucc, tgx, tgy := whilescreen(GetSystemImg("tgCap.png"), 0.1)
+	tgCapSucc, tgx, tgy := whilescreenbase(GetSystemImg("tgCap.png"), 8, 0.1)
 	if tgCapSucc {
 		robotgo.MoveMouse(tgx, tgy)
 		leftMouseClick()
