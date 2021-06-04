@@ -172,33 +172,14 @@ func firstCard() {
 		return
 	}
 
-	//獎勵領取
-	checkGiftSucc := leftMouseClickImg(GetSystemImg("checkGift.png"))
-	if !checkGiftSucc {
+	// 格一秒點一次
+	// 直到找到信箱 並且點下去 並且有全部領取才跳出來
+	giSucc := gift()
+	if !giSucc {
 		reStart()
 		return
 	}
 
-	//天獎勵領取
-	dayCheckGiftSucc := leftMouseClickImg(GetSystemImg("dayCheckGift.png"), 0.1)
-	if !dayCheckGiftSucc {
-		reStart()
-		return
-	}
-
-	//點信箱
-	mailSucc := leftMouseClickImg(GetSystemImg("mail.png"))
-	if !mailSucc {
-		reStart()
-		return
-	}
-
-	//全部領取
-	allTakeSucc := leftMouseClickImg(GetSystemImg("allTake.png"))
-	if !allTakeSucc {
-		reStart()
-		return
-	}
 	takeYesSucc := leftMouseClickImg(GetSystemImg("takeYes.png"))
 	if !takeYesSucc {
 		reStart()
@@ -213,16 +194,16 @@ func firstCard() {
 	}
 
 	//幾次十抽
-	tcSucc1 := tenCap()
-	if !tcSucc1 {
-		reStart()
-		return
-	}
-
-	tcSucc2 := tenCap()
-	if !tcSucc2 {
-		reStart()
-		return
+	for {
+		tcSucc1 := tenCap()
+		if !tcSucc1 {
+			buySucc := checkImgClickOtherImg(GetSystemImg("buy.png"), GetSystemImg("buyClose.png"))
+			if buySucc {
+				break
+			}
+			reStart()
+			return
+		}
 	}
 
 	//選單
@@ -317,6 +298,29 @@ func firstCard() {
 
 	outputRoleLog()
 	reStart()
+}
+
+func gift() bool {
+	count := 100
+	for count > 0 {
+		robotgo.Sleep(1)
+
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
+		leftMouseClick()
+
+		//點信箱
+		leftMouseClickImg(GetSystemImg("mail.png"))
+		mailSucc := leftMouseClickImg(GetSystemImg("mail.png"))
+		if mailSucc {
+			//全部領取
+			allTakeSucc := leftMouseClickImg(GetSystemImg("allTake.png"))
+			if allTakeSucc {
+				return true
+			}
+		}
+		count = count - 1
+	}
+	return false
 }
 
 func tenCap() bool {
