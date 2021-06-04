@@ -71,6 +71,7 @@ func whilescreenbase(fullimg string, count int, matchNumber float64) (succ bool,
 	log.Infof("whilescreenbase, count: %d", count)
 	log.Infof("whilescreenbase, matchNumber: %d", matchNumber)
 	count_tmp := 0
+	robotgo.MoveMouse(0, 0)
 	for count_tmp < count {
 		tmp_bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
 		defer robotgo.FreeBitmap(tmp_bitmap)

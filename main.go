@@ -350,8 +350,11 @@ func tenCap() bool {
 	if !tenCapsuleSucc {
 		return false
 	}
-	checkCapSucc := leftMouseClickImg(GetSystemImg("checkCapsule.png"), 0.1)
-	if !checkCapSucc {
+	checkCapSucc, ccx, ccy := whilescreenbase(GetSystemImg("checkCapsule.png"), 8, 0.1)
+	if checkCapSucc {
+		robotgo.MoveMouse(ccx, ccy)
+		leftMouseClick()
+	} else {
 		return false
 	}
 	//處理那10抽
@@ -362,6 +365,7 @@ func tenCap() bool {
 func caping() bool {
 	count := 300
 	for count > 0 {
+		robotgo.MoveMouse(infox+(infow/2), infoy+(infoh/2))
 		leftMouseClick()
 		leftMouseClick()
 		leftMouseClick()
