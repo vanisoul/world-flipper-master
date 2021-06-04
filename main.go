@@ -156,6 +156,8 @@ func firstCard() {
 	//又跳人物
 	iolesaSucc, iex, iey := whilescreenbase(GetSystemImg("iolesa.png"), 25, 0.01)
 	if iolesaSucc {
+		robotgo.Sleep(2)
+		robotgo.MoveMouse(iex, iey)
 		robotgo.MoveMouse(iex, iey)
 		leftMouseClick()
 	}
@@ -309,13 +311,19 @@ func gift() bool {
 		leftMouseClick()
 
 		//點信箱
-		leftMouseClickImg(GetSystemImg("mail.png"))
-		mailSucc := leftMouseClickImg(GetSystemImg("mail.png"))
+		mailSucc, _, _ := whilescreenbase(GetSystemImg("mail.png"), 1, 0.1)
 		if mailSucc {
-			//全部領取
-			allTakeSucc := leftMouseClickImg(GetSystemImg("allTake.png"))
-			if allTakeSucc {
-				return true
+			robotgo.Sleep(2)
+			mailSucc2, mx, my := whilescreenbase(GetSystemImg("mail.png"), 1, 0.1)
+			if mailSucc2 {
+				robotgo.MoveMouse(mx, my)
+				leftMouseClick()
+				leftMouseClick()
+				//全部領取
+				allTakeSucc := leftMouseClickImg(GetSystemImg("allTake.png"))
+				if allTakeSucc {
+					return true
+				}
 			}
 		}
 		count = count - 1
