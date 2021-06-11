@@ -2,14 +2,12 @@ package main
 
 import "path"
 
-func GetSystemImg(name string) string {
+//給予圖片名稱 自動組出img/system/${name}
+func getSystemImg(name string) string {
 	return path.Join("img", "system", name)
 }
 
-func getImgBig(name string) string {
-	return path.Join("img", "role", "big", name)
-}
-
-func getImgSmall(name string) string {
-	return path.Join("img", "role", "small", name)
+//給予子目錄名稱 以及 圖片名稱 自動組出img/${pathStr}/${name}
+func getImg(pathStr string, name string) string {
+	return path.Join("img", pathStr, name)
 }
