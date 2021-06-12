@@ -17,7 +17,7 @@ import (
 //matchNumber : 圖片符合的基準 越靠近1越容易匹配,
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (多張)
-func findOneImgFuncStop(funcs func(), frequency int, matchNumber float32, rigorous bool, imgFullPaths ...string) {
+func findOneImgFuncStop(funcs func(), frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) {
 	for {
 		funcs()
 		findSucc, _, _, _ := findOneImages(frequency, matchNumber, rigorous, imgFullPaths...)
@@ -33,7 +33,7 @@ func findOneImgFuncStop(funcs func(), frequency int, matchNumber float32, rigoro
 //matchNumber : 圖片符合的基準 越靠近1越容易匹配,
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (多張)
-func findAllImgFuncStop(funcs func(), frequency int, matchNumber float32, rigorous bool, imgFullPaths ...string) {
+func findAllImgFuncStop(funcs func(), frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) {
 	for {
 		funcs()
 		findSucc := findAllImages(frequency, matchNumber, rigorous, imgFullPaths...)
@@ -49,7 +49,7 @@ func findAllImgFuncStop(funcs func(), frequency int, matchNumber float32, rigoro
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (多張),
 //funcs : 可能被執行的方法
-func haveOneImgsExecFunc(frequency int, matchNumber float32, rigorous bool, imgFullPaths []string, funcs ...func(x int, y int)) {
+func haveOneImgsExecFunc(frequency int, matchNumber float64, rigorous bool, imgFullPaths []string, funcs ...func(x int, y int)) {
 	findSucc, index, x, y := findOneImages(frequency, matchNumber, rigorous, imgFullPaths...)
 	if findSucc {
 		funcs[index](x, y)
@@ -62,7 +62,7 @@ func haveOneImgsExecFunc(frequency int, matchNumber float32, rigorous bool, imgF
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (多張),
 //funcs : 可能被執行的方法
-func haveAllImgsExecFunc(frequency int, matchNumber float32, rigorous bool, imgFullPaths []string, funcs func()) {
+func haveAllImgsExecFunc(frequency int, matchNumber float64, rigorous bool, imgFullPaths []string, funcs func()) {
 	findSucc := findAllImages(frequency, matchNumber, rigorous, imgFullPaths...)
 	if findSucc {
 		funcs()

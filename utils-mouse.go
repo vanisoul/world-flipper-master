@@ -7,7 +7,7 @@ import "github.com/go-vgo/robotgo"
 //matchNumber : 圖片符合的基準 越靠近1越容易匹配,
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (可多張)
-func haveOneImgsRight(frequency int, matchNumber float32, rigorous bool, imgFullPaths ...string) {
+func haveOneImgsRight(frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) {
 	findSucc, _, x, y := findOneImages(frequency, matchNumber, rigorous, imgFullPaths...)
 	if findSucc {
 		rightMouseClick(x, y)
@@ -19,7 +19,7 @@ func haveOneImgsRight(frequency int, matchNumber float32, rigorous bool, imgFull
 //matchNumber : 圖片符合的基準 越靠近1越容易匹配,
 //rigorous : 是否需要持續1秒鐘以上圖片存在才算匹配成功 : 秒數可由rigorousSec修改,
 //imgFullPaths : 傳入圖片相對全路徑 (可多張)
-func haveOneImgsLeft(frequency int, matchNumber float32, rigorous bool, imgFullPaths ...string) {
+func haveOneImgsLeft(frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) {
 	findSucc, _, x, y := findOneImages(frequency, matchNumber, rigorous, imgFullPaths...)
 	if findSucc {
 		leftMouseClick(x, y)
