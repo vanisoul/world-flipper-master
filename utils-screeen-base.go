@@ -17,6 +17,7 @@ var rigorousSec = 1
 //回傳 : 找到與否 - 找到的是第幾張 - 找到的中心點x - 找到的中心點y
 func findOneImages(frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) (succ bool, index int, x int, y int) {
 	log.Infof("findOneImages, frequency: %d, matchNumber: %e, rigorous: %s", frequency, matchNumber, rigorous)
+	log.Infof("imgs", imgFullPaths)
 	succ = false
 	index = -1
 	x = -1
@@ -76,6 +77,7 @@ func findOneImages(frequency int, matchNumber float64, rigorous bool, imgFullPat
 //回傳 : 找到與否
 func findAllImages(frequency int, matchNumber float64, rigorous bool, imgFullPaths ...string) (succ bool) {
 	log.Infof("findAllImages, frequency: %d, matchNumber: %e, rigorous: %s", frequency, matchNumber, rigorous)
+	log.Infof("imgs", imgFullPaths)
 	succ = false
 
 	filesExist := imgFilesExist(imgFullPaths...)
