@@ -97,6 +97,7 @@ func findAllImages(frequency int, matchNumber float32, rigorous bool, imgFullPat
 		}
 		defer robotgo.FreeBitmap(rigorous_bitmap)
 
+		isbreak := false
 		for _, imgFullPath := range imgFullPaths {
 			dst_map := robotgo.OpenBitmap(imgFullPath)
 			defer robotgo.FreeBitmap(dst_map)
@@ -104,12 +105,14 @@ func findAllImages(frequency int, matchNumber float32, rigorous bool, imgFullPat
 			fx, fy := robotgo.FindBitmap(dst_map, new_bitmap, matchNumber)
 			//如果沒找到就離開這次找圖 等待一秒下一次再一次掃圖加找圖
 			if fx == -1 && fy == -1 {
+				isbreak = true
 				break
 			}
 			//如果需要嚴謹 就在找一次 如果沒找到就離開這次找圖 等待一秒下一次再一次掃圖加找圖
 			if rigorous {
 				fx, fy = robotgo.FindBitmap(dst_map, rigorous_bitmap, matchNumber)
 				if fx == -1 && fy == -1 {
+					isbreak = true
 					break
 				}
 			}
@@ -117,8 +120,10 @@ func findAllImages(frequency int, matchNumber float32, rigorous bool, imgFullPat
 			setLog("findAllImages", "尋找圖片成功", fmt.Sprintf("img: %s", imgFullPath))
 		}
 		tmp_frequency = tmp_frequency + 1
-		succ = true
-		return
+		if !isbreak {
+			succ = true
+			return
+		}
 	}
 	return
 }
