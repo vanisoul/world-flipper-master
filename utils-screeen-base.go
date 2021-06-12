@@ -35,7 +35,7 @@ func findOneImages(frequency int, matchNumber float32, rigorous bool, imgFullPat
 		defer robotgo.FreeBitmap(rigorous_bitmap)
 
 		for idx, imgFullPath := range imgFullPaths {
-			fileExist, imgw, imgh := FileExist(imgFullPath)
+			fileExist, imgw, imgh := imgFileExist(imgFullPath)
 			if !fileExist {
 				continue
 			}
@@ -78,7 +78,7 @@ func findAllImages(frequency int, matchNumber float32, rigorous bool, imgFullPat
 	log.Infof("findAllImages, frequency: %d, matchNumber: %e, rigorous: %s", frequency, matchNumber, rigorous)
 	succ = false
 
-	filesExist := FilesExist(imgFullPaths...)
+	filesExist := imgFilesExist(imgFullPaths...)
 	if !filesExist {
 		return
 	}

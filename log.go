@@ -35,7 +35,7 @@ func setLog(typeStr string, msg string, item string) {
 }
 
 func LoadConfiglog() (config ConfigLog, err error) {
-	exis := FileExist("log/log.json")
+	exis := fileExist("log/log.json")
 	if !exis {
 		err := copyFileContents("log/log-defult.json", "log/log.json")
 		if err != nil {

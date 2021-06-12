@@ -12,7 +12,7 @@ var infoh int = 2000
 //初始化本程式未來要找的座標範圍 (不找全圖)
 //需要有initImg.png  x:掃描範圍x與initImg.png位置偏移量 y:掃描範圍y與initImg.png位置偏移量 w:寬度 h:高度
 func infoScreen(x int, y int, w int, h int) bool {
-	succ, xx, yy := whilescreen(GetSystemImg("initImg.png"), 0.05)
+	succ, _, xx, yy := findOneImages(5, 0.01, false, getSystemImg("initImg.png"))
 	if succ {
 		infox = xx + x
 		infoy = yy + y
