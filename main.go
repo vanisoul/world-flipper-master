@@ -6,8 +6,23 @@ import (
 
 var yDifficulty = 0
 var yBoss = 0
+var imgBoss = "remaining.pngOrstroke.png"
+var imgDifficulty = "updateList.pngOritemExchange.png"
 
 func main() {
+	// checkpointConfig, _ := LoadCheckpointConfig()
+	// haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("mainMission.png")}, func(x, y int) {
+	// 	if checkpointConfig.Type == "boss" {
+	// 		haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
+	// 		yDifficulty = 200
+	// 		yBoss = 310
+	// 	} else if checkpointConfig.Type == "activity" {
+	// 		haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
+	// 		yDifficulty = 310
+	// 		yBoss = 200
+	// 	}
+	// })
+	// return
 
 	//初始化設定 未來要判斷視窗位置
 	infoScreen(-40, -40, 600, 1050)
@@ -43,20 +58,24 @@ func main() {
 		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("mainMission.png")}, func(x, y int) {
 			if checkpointConfig.Type == "boss" {
 				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
+				imgBoss = "stroke.png"
+				imgDifficulty = "itemExchange.png"
 				yDifficulty = 200
 				yBoss = 310
 			} else if checkpointConfig.Type == "activity" {
 				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
+				imgBoss = "remaining.png"
+				imgDifficulty = "updateList.png"
 				yDifficulty = 310
 				yBoss = 200
 			}
 		})
 
 		//處理選擇boss關卡
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("stroke.png")}, func(x, y int) { choeseBoss(checkpointConfig.Number) })
+		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg(imgBoss)}, func(x, y int) { choeseBoss(checkpointConfig.Number) })
 
 		//處理選擇難度
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("itemExchange.png")}, func(x, y int) { choeseDifficulty(checkpointConfig.Difficulty) })
+		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg(imgDifficulty)}, func(x, y int) { choeseDifficulty(checkpointConfig.Difficulty) })
 
 		//多人遊玩
 		haveOneImgsLeft(1, 0.05, true, getSystemImg("multiplayer.png"))
