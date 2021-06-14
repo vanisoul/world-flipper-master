@@ -13,7 +13,7 @@ func main() {
 	tmpDifficulty := 0
 	tmpNumber := 0
 	tmpType := ""
-	for false {
+	for {
 		//如果config有變動 需要重新回到主頁
 		checkpointConfig, _ := LoadCheckpointConfig()
 		if tmpDifficulty != checkpointConfig.Difficulty || tmpNumber != checkpointConfig.Number || tmpType != checkpointConfig.Type {
