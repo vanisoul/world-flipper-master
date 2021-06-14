@@ -4,6 +4,9 @@ import (
 	"github.com/go-vgo/robotgo"
 )
 
+var yDifficulty = 0
+var yBoss = 0
+
 func main() {
 
 	//初始化設定 未來要判斷視窗位置
@@ -40,8 +43,12 @@ func main() {
 		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("mainMission.png")}, func(x, y int) {
 			if checkpointConfig.Type == "boss" {
 				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
+				yDifficulty = 200
+				yBoss = 310
 			} else if checkpointConfig.Type == "activity" {
 				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
+				yDifficulty = 310
+				yBoss = 200
 			}
 		})
 
@@ -101,7 +108,7 @@ func main() {
 
 func choeseBoss(seq int) {
 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-	y := y_tmp + 310 + seq*110
+	y := y_tmp + yBoss + seq*110
 	if seq < 6 {
 		leftMouseClick(x, y)
 	} else {
@@ -120,7 +127,7 @@ func choeseBoss(seq int) {
 
 func choeseDifficulty(seq int) {
 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-	y := y_tmp + 200 + seq*110
+	y := y_tmp + yDifficulty + seq*110
 	if seq < 6 {
 		leftMouseClick(x, y)
 	} else {
