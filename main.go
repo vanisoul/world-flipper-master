@@ -6,17 +6,23 @@ import (
 
 func main() {
 
-	// choeseDifficulty(1)
-	// choeseBoss(8)
-	// testPos(getSystemImg("stone.png"))
-	// haveOneImgsLeft(10, 0.05, true, getSystemImg("YES.png"))
-	// return
-	//初始化設定 未來要判斷視窗位置 (需調整)
+	//初始化設定 未來要判斷視窗位置
 	infoScreen(-40, -40, 600, 1050)
 	//初始化ID
 	infoID()
+	tmpDifficulty := 0
+	tmpNumber := 0
+	tmpType := ""
 	for false {
+		//如果config有變動 需要重新回到主頁
 		checkpointConfig, _ := LoadCheckpointConfig()
+		if tmpDifficulty != checkpointConfig.Difficulty || tmpNumber != checkpointConfig.Number || tmpType != checkpointConfig.Type {
+			tmpDifficulty = checkpointConfig.Difficulty
+			tmpNumber = checkpointConfig.Number
+			tmpType = checkpointConfig.Type
+			haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"))
+		}
+
 		//開啟遊戲
 		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png")}, func(x, y int) {
 			leftMouseClick(x, y)
@@ -76,8 +82,6 @@ func main() {
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
 		})
-
-		//如果config有變動 需要重新回到主頁
 
 		robotgo.Sleep(3)
 	}
