@@ -28,7 +28,13 @@ func main() {
 			haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"))
 		}
 
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg("stroke.png"), getSystemImg("itemExchange.png"), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png")},
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg("stroke.png"), getSystemImg("itemExchange.png"), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png")},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
 			func(x, y int) {
 				leftMouseClick(x, y)
 			},
