@@ -79,6 +79,7 @@ func main() {
 
 		//偵測到戰鬥中跳出
 		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("stop.png")}, func(x, y int) {
+			leftMouseClick(x, y)
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
 		})
