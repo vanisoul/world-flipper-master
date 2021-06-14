@@ -44,8 +44,8 @@ func main() {
 			func(x, y int) { leftMouseClick(x, y) },
 			func(x, y int) {
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("YfollowersPublic.png"))
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
 			},
 			func(x, y int) {
@@ -62,7 +62,7 @@ func main() {
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
 			})
 
-		robotgo.Sleep(3)
+		// robotgo.Sleep(3)
 	}
 }
 
