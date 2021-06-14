@@ -20,7 +20,7 @@ func main() {
 			tmpDifficulty = checkpointConfig.Difficulty
 			tmpNumber = checkpointConfig.Number
 			tmpType = checkpointConfig.Type
-			haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("goRecruit.png")},
+			haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("startRaising.png")},
 				func(x, y int) {
 					haveOneImgsLeft(1, 0.05, true, getSystemImg("return.png"))
 					haveOneImgsLeft(1, 0.05, true, getSystemImg("disband.png"))
