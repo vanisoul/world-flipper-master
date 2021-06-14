@@ -58,6 +58,7 @@ func main() {
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("goGame.png"))
 			},
 			func(x, y int) {
+				leftMouseClick(x, y)
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
 			})
