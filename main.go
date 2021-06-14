@@ -91,6 +91,10 @@ func main() {
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
 		})
 
+		//有錯誤問題
+		haveOneImgsLeft(1, 0.01, false, getSystemImg("exitHalfway.png"))
+		haveOneImgsLeft(1, 0.01, false, getSystemImg("errorOK.png"))
+
 		robotgo.Sleep(3)
 	}
 }
