@@ -31,7 +31,9 @@ func main() {
 		//開啟遊戲
 		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png")}, func(x, y int) {
 			leftMouseClick(x, y)
-			haveOneImgsLeft(10, 0.05, true, getSystemImg("joinMain.png"))
+		})
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("joinMain.png")}, func(x, y int) {
+			leftMouseClick(x, y)
 		})
 
 		//進入bose戰鬥or活動戰鬥
