@@ -28,12 +28,12 @@ func haveOneImgsLeft(frequency int, matchNumber float64, rigorous bool, imgFullP
 
 func customizedMouseLeft() {
 	robotgo.MouseClick("left")
-	robotgo.Sleep(1)
+	robotgo.Sleep(3)
 }
 
 func customizedMouseRight() {
 	robotgo.MouseClick("right")
-	robotgo.Sleep(1)
+	robotgo.Sleep(3)
 }
 
 func leftMouseClick(x int, y int) {
