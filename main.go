@@ -59,8 +59,8 @@ func main() {
 		//如果沒有招募
 		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("notRecruit.png")}, func(x, y int) {
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("YfollowersPublic.png"))
+			haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+			haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
 			haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
 		})
 
