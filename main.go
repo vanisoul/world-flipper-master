@@ -73,16 +73,21 @@ func main() {
 				leftMouseClick(x, y)
 			},
 			func(x, y int) {
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-				haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-				haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				})
+
 			},
 			func(x, y int) {
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("NrandomRecruitment.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("NfollowersPublic.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("recruitAll.png")}, func() {}, func() {
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("NrandomRecruitment.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("NfollowersPublic.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				})
 			},
 			func(x, y int) {
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("goGame.png"))
