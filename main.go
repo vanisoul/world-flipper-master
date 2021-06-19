@@ -90,7 +90,8 @@ func main() {
 				})
 			},
 			func(x, y int) {
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("goGame.png"))
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("goGame.png"))
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("goGame2.png"))
 			},
 			func(x, y int) {
 				leftMouseClick(x, y)
