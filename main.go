@@ -33,7 +33,7 @@ func main() {
 		}
 
 		//開啟遊戲
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png")},
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png")},
 			func(x, y int) {
 				leftMouseClick(x, y)
 			},
@@ -97,6 +97,21 @@ func main() {
 				leftMouseClick(x, y)
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
 				haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
 			},
 			func(x, y int) {
 				leftMouseClick(x, y)
