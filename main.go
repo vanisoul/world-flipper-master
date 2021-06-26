@@ -10,20 +10,6 @@ var imgBoss = "remaining.pngOrstroke.png"
 var imgDifficulty = "updateList.pngOritemExchange.png"
 
 func main() {
-	// checkpointConfig, _ := LoadCheckpointConfig()
-	// haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("mainMission.png")}, func(x, y int) {
-	// 	if checkpointConfig.Type == "boss" {
-	// 		haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
-	// 		yDifficulty = 200
-	// 		yBoss = 310
-	// 	} else if checkpointConfig.Type == "activity" {
-	// 		haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
-	// 		yDifficulty = 310
-	// 		yBoss = 200
-	// 	}
-	// })
-	// return
-
 	//初始化設定 未來要判斷視窗位置
 	infoScreen(-40, -40, 600, 1050)
 	//初始化ID
@@ -47,81 +33,113 @@ func main() {
 		}
 
 		//開啟遊戲
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png")}, func(x, y int) {
-			leftMouseClick(x, y)
-		})
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("joinMain.png")}, func(x, y int) {
-			leftMouseClick(x, y)
-		})
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png"), getSystemImg("OKupdateVertion.png"), getSystemImg("playUpdate.png"), getSystemImg("startGamePlay.png"), getSystemImg("updateVertion.png")},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				if checkpointConfig.Type == "boss" {
+					haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
+					imgBoss = "stroke.png"
+					imgDifficulty = "itemExchange.png"
+					yDifficulty = 200
+					yBoss = 310
+				} else if checkpointConfig.Type == "activity" {
+					haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
+					imgBoss = "remaining.png"
+					imgDifficulty = "updateList.png"
+					yDifficulty = 310
+					yBoss = 200
+				}
+			},
+			func(x, y int) { choeseBoss(checkpointConfig.Number) },
+			func(x, y int) { choeseDifficulty(checkpointConfig.Difficulty) },
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				})
 
-		//進入bose戰鬥or活動戰鬥
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("mainMission.png")}, func(x, y int) {
-			if checkpointConfig.Type == "boss" {
-				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
-				imgBoss = "stroke.png"
-				imgDifficulty = "itemExchange.png"
-				yDifficulty = 200
-				yBoss = 310
-			} else if checkpointConfig.Type == "activity" {
-				haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
-				imgBoss = "remaining.png"
-				imgDifficulty = "updateList.png"
-				yDifficulty = 310
-				yBoss = 200
-			}
-		})
-
-		//處理選擇boss關卡
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg(imgBoss)}, func(x, y int) { choeseBoss(checkpointConfig.Number) })
-
-		//處理選擇難度
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg(imgDifficulty)}, func(x, y int) { choeseDifficulty(checkpointConfig.Difficulty) })
-
-		//多人遊玩
-		haveOneImgsLeft(1, 0.05, true, getSystemImg("multiplayer.png"))
-		//使用強化點數
-		haveOneImgsLeft(1, 0.05, true, getSystemImg("YES.png"))
-
-		//閒置
-		haveOneImgsLeft(1, 0.05, true, getSystemImg("OK.png"))
-
-		//如果有需要領取獎勵 關閉活動通知
-		haveOneImgsLeft(1, 0.05, true, getSystemImg("dayGift.png"))
-		haveOneImgsLeft(1, 0.05, true, getSystemImg("dayClose.png"))
-
-		//如果沒有招募
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("notRecruit.png")}, func(x, y int) {
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-			haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-			haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
-		})
-
-		//讚的圖示 變成隨機招募
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("great.png")}, func(x, y int) {
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("NrandomRecruitment.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("NfollowersPublic.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
-		})
-
-		//GO的圖示 開始
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("goPaly.png")}, func(x, y int) {
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("goGame.png"))
-		})
-
-		//偵測到戰鬥中跳出
-		haveOneImgsExecFunc(1, 0.01, false, []string{getSystemImg("stop.png")}, func(x, y int) {
-			leftMouseClick(x, y)
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
-			haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
-		})
-
-		//有錯誤問題
-		haveOneImgsLeft(1, 0.01, false, getSystemImg("exitHalfway.png"))
-		haveOneImgsLeft(1, 0.01, false, getSystemImg("errorOK.png"))
-
-		robotgo.Sleep(3)
+			},
+			func(x, y int) {
+				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("recruitAll.png")}, func() {}, func() {
+					haveOneImgsLeft(2, 0.01, false, getSystemImg("startRaising.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("NrandomRecruitment.png"))
+					haveOneImgsLeft(1, 0.01, false, getSystemImg("NfollowersPublic.png"))
+					haveOneImgsLeft(2, 0.01, false, getSystemImg("goRecruit.png"))
+				})
+			},
+			func(x, y int) {
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("goGame.png"))
+				haveOneImgsLeft(1, 0.01, false, getSystemImg("goGame2.png"))
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+				haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
+				haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				leftMouseClick(x, y)
+			})
 	}
 }
 
@@ -150,7 +168,7 @@ func choeseDifficulty(seq int) {
 	if seq < 6 {
 		leftMouseClick(x, y)
 	} else {
-		ys := y_tmp + 310 + 4*110
+		ys := y_tmp + 310 + 2*110
 		ye := y_tmp + 310 + 1*110
 		robotgo.MoveMouse(x, ys)
 		robotgo.MouseToggle(`down`, `left`)
@@ -158,7 +176,7 @@ func choeseDifficulty(seq int) {
 		robotgo.MoveMouse(x, ye)
 		robotgo.Sleep(1)
 		robotgo.MouseToggle(`up`, `left`)
-		choeseBoss(seq - 3)
+		choeseDifficulty(seq - 1)
 		robotgo.Sleep(1)
 	}
 }
