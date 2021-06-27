@@ -35,6 +35,7 @@ func main() {
 					haveOneImgsLeft(1, 0.05, true, getSystemImg("disband.png"))
 				})
 			haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"))
+			choseAuto = false
 		}
 
 		//開啟遊戲
