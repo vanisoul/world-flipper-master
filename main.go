@@ -125,9 +125,11 @@ func main() {
 				haveOneImgsLeft(1, 0.01, false, getSystemImg("goGame2.png"))
 			},
 			func(x, y int) {
-				leftMouseClick(x, y)
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
-				haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
+				if tmpAuto != "repalay" {
+					leftMouseClick(x, y)
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("exit.png"))
+					haveOneImgsLeft(5, 0.01, false, getSystemImg("exitYes.png"))
+				}
 			},
 			func(x, y int) {
 				leftMouseClick(x, y)
