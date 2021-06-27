@@ -31,14 +31,14 @@ func main() {
 			}
 			haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("startRaising.png"), getSystemImg("goGame3.png"), getSystemImg("goGame4.png")},
 				func(x, y int) {
-					haveOneImgsLeft(1, 0.05, true, getSystemImg("return.png"))
-					haveOneImgsLeft(1, 0.05, true, getSystemImg("disband.png"))
+					haveOneImgsLeft(5, 0.05, true, getSystemImg("return.png"))
+					haveOneImgsLeft(5, 0.05, true, getSystemImg("disband.png"))
 				},
 				func(x, y int) {
-					haveOneImgsLeft(1, 0.05, true, getSystemImg("return.png"))
+					haveOneImgsLeft(5, 0.05, true, getSystemImg("return.png"))
 				},
 				func(x, y int) {
-					haveOneImgsLeft(1, 0.05, true, getSystemImg("return.png"))
+					haveOneImgsLeft(5, 0.05, true, getSystemImg("return.png"))
 				})
 			haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"))
 			choseAuto = false
