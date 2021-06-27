@@ -2,8 +2,8 @@
     "type": "boss",
     "fNumber": 4,
     "fDifficulty":1,
-    "rNumber": 2,
+    "rNumber": 6,
     "rDifficulty" : 1,
-    "rFrequency" : 2,
+    "rFrequency" : 3,
     "rFeatures" : true
 }
