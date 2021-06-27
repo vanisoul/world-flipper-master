@@ -1,9 +1,9 @@
 {
     "type": "boss",
-    "fNumber": 1,
+    "fNumber": 4,
     "fDifficulty":1,
-    "rNumber": 1,
+    "rNumber": 2,
     "rDifficulty" : 1,
-    "rFrequency" : 3,
+    "rFrequency" : 2,
     "rFeatures" : true
 }
