@@ -14,16 +14,21 @@ func main() {
 	infoScreen(-40, -40, 600, 1050)
 	//初始化ID
 	infoID()
-	tmpDifficulty := 0
-	tmpNumber := 0
-	tmpType := ""
+	tmpAuto := ""            //紀錄auto狀態 如果是auto模式才有用到
+	choeseBossSeq := 0       //這次選擇的關卡
+	choeseDifficultySeq := 0 //這次選擇的關卡
+	choseAuto := false       //紀錄這次有沒有被改變狀態
+	tmpcheckpointConfig, _ := LoadCheckpointConfig()
+	tmpcheckpointConfig.Type = "aaaaaaaaaaaaa" //故意改變讓一開始進入回主選單
+	tmpRFrequency := 0
 	for {
 		//如果config有變動 需要重新回到主頁
 		checkpointConfig, _ := LoadCheckpointConfig()
-		if tmpDifficulty != checkpointConfig.Difficulty || tmpNumber != checkpointConfig.Number || tmpType != checkpointConfig.Type {
-			tmpDifficulty = checkpointConfig.Difficulty
-			tmpNumber = checkpointConfig.Number
-			tmpType = checkpointConfig.Type
+		if tmpcheckpointConfig != checkpointConfig || choseAuto {
+			tmpcheckpointConfig = checkpointConfig
+			if tmpAuto != "repalay" {
+				tmpAuto = checkpointConfig.Type
+			}
 			haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("startRaising.png")},
 				func(x, y int) {
 					haveOneImgsLeft(1, 0.05, true, getSystemImg("return.png"))
@@ -33,7 +38,7 @@ func main() {
 		}
 
 		//開啟遊戲
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png"), getSystemImg("OKupdateVertion.png"), getSystemImg("OKupdateVertion2.png"), getSystemImg("playUpdate.png"), getSystemImg("startGamePlay.png"), getSystemImg("updateVertion.png")},
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png"), getSystemImg("OKupdateVertion.png"), getSystemImg("OKupdateVertion2.png"), getSystemImg("playUpdate.png"), getSystemImg("startGamePlay.png"), getSystemImg("updateVertion.png"), getSystemImg("goGame.png"), getSystemImg("goGame2.png")},
 			func(x, y int) {
 				leftMouseClick(x, y)
 			},
@@ -41,22 +46,40 @@ func main() {
 				leftMouseClick(x, y)
 			},
 			func(x, y int) {
-				if checkpointConfig.Type == "boss" {
+				now_type := ""
+				if checkpointConfig.RFeatures {
+					now_type = tmpAuto
+				} else {
+					now_type = checkpointConfig.Type
+				}
+				if now_type == "boss" {
 					haveOneImgsLeft(10, 0.05, true, getSystemImg("joinBoss.png"))
 					imgBoss = "stroke.png"
 					imgDifficulty = "itemExchange.png"
 					yDifficulty = 200
 					yBoss = 310
-				} else if checkpointConfig.Type == "activity" {
+					choeseBossSeq = checkpointConfig.FNumber
+					choeseDifficultySeq = checkpointConfig.FDifficulty
+				} else if now_type == "activity" {
 					haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
 					imgBoss = "remaining.png"
 					imgDifficulty = "updateList.png"
 					yDifficulty = 310
 					yBoss = 200
+					choeseBossSeq = checkpointConfig.FNumber
+					choeseDifficultySeq = checkpointConfig.FDifficulty
+				} else if now_type == "repalay" {
+					haveOneImgsLeft(10, 0.05, true, getSystemImg("joinActivity.png"))
+					imgBoss = "remaining.png"
+					imgDifficulty = "gameProblem.png"
+					yDifficulty = 200
+					yBoss = 200
+					choeseBossSeq = checkpointConfig.RNumber
+					choeseDifficultySeq = checkpointConfig.RDifficulty
 				}
 			},
-			func(x, y int) { choeseBoss(checkpointConfig.Number) },
-			func(x, y int) { choeseDifficulty(checkpointConfig.Difficulty) },
+			func(x, y int) { choeseBoss(choeseBossSeq) },
+			func(x, y int) { choeseDifficulty(choeseDifficultySeq) },
 			func(x, y int) {
 				leftMouseClick(x, y)
 			},
@@ -73,13 +96,19 @@ func main() {
 				leftMouseClick(x, y)
 			},
 			func(x, y int) {
-				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
-					haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
-					haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-					haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
-					haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+				haveAllImgsExecFunc(1, 0.05, false, []string{getSystemImg("fullOfEnergy.png")}, func() {
+					if checkpointConfig.RFeatures {
+						tmpAuto = "repalay"
+						choseAuto = true
+					}
+				}, func() {
+					haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
+						haveOneImgsLeft(5, 0.01, false, getSystemImg("startRaising.png"))
+						haveOneImgsLeft(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+						haveOneImgsLeft(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
+						haveOneImgsLeft(5, 0.01, false, getSystemImg("goRecruit.png"))
+					})
 				})
-
 			},
 			func(x, y int) {
 				haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("recruitAll.png")}, func() {}, func() {
@@ -142,7 +171,30 @@ func main() {
 			},
 			func(x, y int) {
 				leftMouseClick(x, y)
+			},
+			func(x, y int) {
+				if tmpRFrequency >= checkpointConfig.RFrequency {
+					tmpRFrequency = 0
+					tmpAuto = checkpointConfig.Type
+					choseAuto = true
+				} else {
+					leftMouseClick(x, y)
+					tmpRFrequency = tmpRFrequency + 1
+					robotgo.Sleep(10)
+				}
+			},
+			func(x, y int) {
+				if tmpRFrequency >= checkpointConfig.RFrequency {
+					tmpRFrequency = 0
+					tmpAuto = checkpointConfig.Type
+					choseAuto = true
+				} else {
+					leftMouseClick(x, y)
+					tmpRFrequency = tmpRFrequency + 1
+					robotgo.Sleep(10)
+				}
 			})
+
 	}
 }
 

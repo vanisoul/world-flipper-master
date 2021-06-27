@@ -1,5 +1,9 @@
 {
     "type": "boss",
-    "number": 1,
-    "difficulty":1
+    "fNumber": 1,
+    "fDifficulty":1,
+    "rNumber": 1,
+    "rDifficulty" : 1,
+    "rFrequency" : 3,
+    "rFeatures" : true
 }
