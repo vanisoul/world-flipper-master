@@ -183,7 +183,7 @@ func main() {
 				leftMouseClick(x, y)
 			},
 			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency {
+				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
 					tmpRFrequency = 0
 					tmpAuto = checkpointConfig.Type
 					choseAuto = true
@@ -194,7 +194,7 @@ func main() {
 				}
 			},
 			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency {
+				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
 					tmpRFrequency = 0
 					tmpAuto = checkpointConfig.Type
 					choseAuto = true
@@ -205,7 +205,7 @@ func main() {
 				}
 			},
 			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency {
+				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
 					tmpRFrequency = 0
 					tmpAuto = checkpointConfig.Type
 					choseAuto = true
@@ -216,7 +216,7 @@ func main() {
 				}
 			},
 			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency {
+				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
 					tmpRFrequency = 0
 					tmpAuto = checkpointConfig.Type
 					choseAuto = true
