@@ -41,11 +41,12 @@ func main() {
 					haveOneImgsLeft(5, 0.05, true, getSystemImg("return.png"))
 				})
 			haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"))
+			robotgo.Sleep(8)
 			choseAuto = false
 		}
 
 		//開啟遊戲
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png"), getSystemImg("OKupdateVertion.png"), getSystemImg("OKupdateVertion2.png"), getSystemImg("playUpdate.png"), getSystemImg("startGamePlay.png"), getSystemImg("updateVertion.png"), getSystemImg("goGame.png"), getSystemImg("goGame2.png"), getSystemImg("goGame3.png"), getSystemImg("goGame4.png"), getSystemImg("next1.png"), getSystemImg("next2.png"), getSystemImg("next3.png"), getSystemImg("next4.png"), getSystemImg("rePlay.png"), getSystemImg("gmaeOver.png"), getSystemImg("exitYes.png"), getSystemImg("maintag1.png"), getSystemImg("maintag2.png")},
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("exitHalfway.png"), getSystemImg("errorOK.png"), getSystemImg("SKIP.png"), getSystemImg("dayGift2.png"), getSystemImg("gameStop.png"), getSystemImg("errorClose.png"), getSystemImg("fiveStar.png"), getSystemImg("fourStar.png"), getSystemImg("threeStar.png"), getSystemImg("NEW.png"), getSystemImg("OKupdateVertion.png"), getSystemImg("OKupdateVertion2.png"), getSystemImg("playUpdate.png"), getSystemImg("startGamePlay.png"), getSystemImg("updateVertion.png"), getSystemImg("goGame3.png"), getSystemImg("goGame4.png"), getSystemImg("next1.png"), getSystemImg("next2.png"), getSystemImg("next3.png"), getSystemImg("next4.png"), getSystemImg("rePlay.png"), getSystemImg("gmaeOver.png"), getSystemImg("exitYes.png"), getSystemImg("maintag1.png"), getSystemImg("maintag2.png")},
 			func(x, y int) {
 				leftMouseClick(x, y)
 			},
@@ -205,28 +206,6 @@ func main() {
 				}
 			},
 			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
-					tmpRFrequency = 0
-					tmpAuto = checkpointConfig.Type
-					choseAuto = true
-				} else {
-					leftMouseClick(x, y)
-					tmpRFrequency = tmpRFrequency + 1
-					robotgo.Sleep(10)
-				}
-			},
-			func(x, y int) {
-				if tmpRFrequency >= checkpointConfig.RFrequency && tmpAuto == "repalay" {
-					tmpRFrequency = 0
-					tmpAuto = checkpointConfig.Type
-					choseAuto = true
-				} else {
-					leftMouseClick(x, y)
-					tmpRFrequency = tmpRFrequency + 1
-					robotgo.Sleep(10)
-				}
-			},
-			func(x, y int) {
 				leftMouseClick(x, y)
 			},
 			func(x, y int) {
@@ -249,9 +228,11 @@ func main() {
 			},
 			func(x, y int) {
 				haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"), getSystemImg("main7.png"))
+				robotgo.Sleep(8)
 			},
 			func(x, y int) {
 				haveOneImgsLeft(20, 0.1, false, getSystemImg("main1.png"), getSystemImg("main2.png"), getSystemImg("main3.png"), getSystemImg("main4.png"), getSystemImg("main5.png"), getSystemImg("main6.png"), getSystemImg("main7.png"))
+				robotgo.Sleep(8)
 			})
 
 	}
