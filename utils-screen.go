@@ -72,5 +72,5 @@ func savescreen(name string) {
 	imgName := fmt.Sprintf("log/%d.png", name)
 
 	AdbShellScreencapPullRm()
-	exec.Command("cp", "screen.png", imgName).Run()
+	exec.Command("move", "screen.png", imgName).Run()
 }
