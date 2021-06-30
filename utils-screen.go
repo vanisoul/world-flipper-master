@@ -87,7 +87,8 @@ func savescreen(paths ...string) int {
 		}
 	}
 
-	bitmap := robotgo.CaptureScreen(infox, infoy, infow, infoh)
+	AdbShellScreencapPullRm()
+	bitmap := robotgo.OpenBitmap("screen.png")
 	defer robotgo.FreeBitmap(bitmap)
 	robotgo.SaveBitmap(bitmap, imgName)
 
