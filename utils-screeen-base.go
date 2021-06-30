@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"path"
 
 	"github.com/go-vgo/robotgo"
 	"github.com/labstack/gommon/log"
@@ -60,7 +61,7 @@ func findOneImages(frequency int, matchNumber float64, rigorous bool, imgFullPat
 			x = fx + (imgw / 2) + infox
 			y = fy + (imgh / 2) + infoy
 
-			savescreen(imgFullPath)
+			savescreen(path.Base(imgFullPath))
 			log.Infof("findOneImages %s is found", imgFullPath)
 			setLog("findOneImages", "尋找圖片成功", fmt.Sprintf("img: %s, x:%d, y:%d", imgFullPath, x, y))
 			return
