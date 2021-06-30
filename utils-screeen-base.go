@@ -59,6 +59,8 @@ func findOneImages(frequency int, matchNumber float64, rigorous bool, imgFullPat
 			index = idx
 			x = fx + (imgw / 2) + infox
 			y = fy + (imgh / 2) + infoy
+
+			savescreen(imgFullPath)
 			log.Infof("findOneImages %s is found", imgFullPath)
 			setLog("findOneImages", "尋找圖片成功", fmt.Sprintf("img: %s, x:%d, y:%d", imgFullPath, x, y))
 			return
@@ -118,6 +120,7 @@ func findAllImages(frequency int, matchNumber float64, rigorous bool, imgFullPat
 					break
 				}
 			}
+			savescreen(imgFullPath)
 			log.Infof("findAllImages %s is found", imgFullPath)
 			setLog("findAllImages", "尋找圖片成功", fmt.Sprintf("img: %s", imgFullPath))
 		}
