@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os/exec"
+
+	"github.com/go-vgo/robotgo"
 )
 
 //一直執行func 當遇到圖片其一
@@ -72,5 +73,7 @@ func savescreen(name string) {
 	imgName := fmt.Sprintf("log/%d.png", name)
 
 	AdbShellScreencapPullRm()
-	exec.Command("move", "screen.png", imgName).Run()
+	bitmap := robotgo.OpenBitmap("screen.png")
+	defer robotgo.FreeBitmap(bitmap)
+	robotgo.SaveBitmap(bitmap, imgName)
 }
