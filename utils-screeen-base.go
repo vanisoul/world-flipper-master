@@ -121,7 +121,7 @@ func findAllImages(frequency int, matchNumber float64, rigorous bool, imgFullPat
 					break
 				}
 			}
-			savescreen(imgFullPath)
+			savescreen(path.Base(imgFullPath))
 			log.Infof("findAllImages %s is found", imgFullPath)
 			setLog("findAllImages", "尋找圖片成功", fmt.Sprintf("img: %s", imgFullPath))
 		}
