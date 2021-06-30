@@ -70,7 +70,7 @@ func haveAllImgsExecFunc(frequency int, matchNumber float64, rigorous bool, imgF
 // paths 儲存至 log/${paths[0]}/${paths[1]}.....
 func savescreen(name string) {
 
-	imgName := fmt.Sprintf("log/%d.png", name)
+	imgName := fmt.Sprintf("log/%s.png", name)
 
 	AdbShellScreencapPullRm()
 	bitmap := robotgo.OpenBitmap("screen.png")
