@@ -46,7 +46,7 @@ func main() {
 		}
 
 		//開啟遊戲
-		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("goGame3.png"), getSystemImg("next1.png"), getSystemImg("rePlay.png"), getSystemImg("exitYes.png")},
+		haveOneImgsExecFunc(1, 0.05, false, []string{getSystemImg("gameLogo.png"), getSystemImg("joinMain.png"), getSystemImg("mainMission.png"), getSystemImg(imgBoss), getSystemImg(imgDifficulty), getSystemImg("multiplayer.png"), getSystemImg("YES.png"), getSystemImg("OK.png"), getSystemImg("dayGift.png"), getSystemImg("dayClose.png"), getSystemImg("notRecruit.png"), getSystemImg("great.png"), getSystemImg("goPaly.png"), getSystemImg("stop.png"), getSystemImg("goGame3.png"), getSystemImg("next1.png"), getSystemImg("rePlay.png"), getSystemImg("exitYes.png"), getSystemImg("networkerrorOK.png")},
 			func(x, y int) {
 				mouseClick(x, y)
 			},
@@ -151,6 +151,9 @@ func main() {
 					tmpRFrequency = tmpRFrequency + 1
 					robotgo.Sleep(10)
 				}
+			},
+			func(x, y int) {
+				mouseClick(x, y)
 			},
 			func(x, y int) {
 				mouseClick(x, y)
