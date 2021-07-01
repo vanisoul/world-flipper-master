@@ -28,6 +28,7 @@ rFrequency : 滿體後打幾次r關卡
 rFeatures : 是否開啟滿體打關卡功能
 */
 type CheckpointConfig struct {
+	Nox         int    `mapstructure:"nox"`
 	Type        string `mapstructure:"type"`
 	FNumber     int    `mapstructure:"fNumber"`
 	FDifficulty int    `mapstructure:"fDifficulty"`

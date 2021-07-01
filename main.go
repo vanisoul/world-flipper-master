@@ -10,9 +10,6 @@ var imgBoss = "remaining.pngOrstroke.png"
 var imgDifficulty = "updateList.pngOritemExchange.png"
 
 func main() {
-
-	adbinit(1)
-
 	//初始化ID
 	infoID()
 	tmpAuto := ""            //紀錄auto狀態 如果是auto模式才有用到
@@ -20,7 +17,8 @@ func main() {
 	choeseDifficultySeq := 0 //這次選擇的關卡
 	choseAuto := false       //紀錄這次有沒有被改變狀態
 	tmpcheckpointConfig, _ := LoadCheckpointConfig()
-	tmpcheckpointConfig.Type = "aaaaaaaaaaaaa" //故意改變讓一開始進入回主選單
+	adbinit(tmpcheckpointConfig.Nox)
+	tmpcheckpointConfig.Type = "" //故意改變讓一開始進入回主選單
 	tmpRFrequency := 0
 	for {
 		//如果config有變動 需要重新回到主頁
