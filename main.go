@@ -21,8 +21,7 @@ func main() {
 	adbinit(tmpcheckpointConfig.Nox)
 	tmpcheckpointConfig.Type = "" //故意改變讓一開始進入回主選單
 	tmpRFrequency := 0
-	debugscreen("great")
-	for false {
+	for {
 		//如果config有變動 需要重新回到主頁
 		checkpointConfig, _ := LoadCheckpointConfig()
 		if tmpcheckpointConfig != checkpointConfig || choseAuto {
