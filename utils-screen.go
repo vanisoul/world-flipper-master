@@ -94,3 +94,15 @@ func savescreen(paths ...string) int {
 
 	return r
 }
+
+// 儲存定義的的視窗 ,
+// paths 儲存至 log/${paths[0]}/${paths[1]}.....
+func debugscreen(paths string) {
+
+	imgName := fmt.Sprintf("log/%s.png", paths)
+
+	AdbShellScreencapPullRm()
+	bitmap := robotgo.OpenBitmap("screen.png")
+	defer robotgo.FreeBitmap(bitmap)
+	robotgo.SaveBitmap(bitmap, imgName)
+}
