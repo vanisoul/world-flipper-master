@@ -6,6 +6,7 @@ import (
 
 var yDifficulty = 0
 var yBoss = 0
+var yEvery = 0
 var imgBoss = "remaining.pngOrstroke.png"
 var imgDifficulty = "updateList.pngOritemExchange.png"
 
@@ -63,24 +64,27 @@ func main() {
 					haveOneImgsClick(10, 0.05, true, getSystemImg("joinBoss.png"))
 					imgBoss = "stroke.png"
 					imgDifficulty = "itemExchange.png"
-					yDifficulty = 200
-					yBoss = 310
+					yBoss = 460
+					yEvery = 175
+					yDifficulty = 310
 					choeseBossSeq = checkpointConfig.FNumber
 					choeseDifficultySeq = checkpointConfig.FDifficulty
 				} else if now_type == "activity" {
 					haveOneImgsClick(10, 0.05, true, getSystemImg("joinActivity.png"))
 					imgBoss = "remaining.png"
 					imgDifficulty = "updateList.png"
-					yDifficulty = 310
-					yBoss = 200
+					yBoss = 310
+					yEvery = 178
+					yDifficulty = 460
 					choeseBossSeq = checkpointConfig.FNumber
 					choeseDifficultySeq = checkpointConfig.FDifficulty
 				} else if now_type == "repalay" {
 					haveOneImgsClick(10, 0.05, true, getSystemImg("joinActivity.png"))
 					imgBoss = "remaining.png"
 					imgDifficulty = "gameProblem.png"
-					yDifficulty = 200
-					yBoss = 200
+					yBoss = 310
+					yEvery = 178
+					yDifficulty = 310
 					choeseBossSeq = checkpointConfig.RNumber
 					choeseDifficultySeq = checkpointConfig.RDifficulty
 				}
@@ -239,30 +243,90 @@ func main() {
 
 func choeseBoss(seq int) {
 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-	y := y_tmp + yBoss + seq*110
+	y := y_tmp + yBoss + seq*yEvery
 	if seq < 6 {
 		mouseClick(x, y)
 		robotgo.Sleep(3)
 	} else {
-		ys := y_tmp + 310 + 4*110
-		ye := y_tmp + 310 + 1*110
+		ys := y_tmp + yBoss + 4*yEvery
+		ye := y_tmp + yBoss + 3*yEvery
 		AdbShellInputSwipe(x, ys, x, ye)
-		choeseBoss(seq - 3)
+		choeseBoss(seq - 1)
 		robotgo.Sleep(1)
 	}
 }
 
+// func fchoeseBoss(seq int) {
+// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
+// 	y := y_tmp + 460 + seq*175
+// 	if seq < 6 {
+// 		mouseClick(x, y)
+// 		robotgo.Sleep(3)
+// 	} else {
+// 		ys := y_tmp + 460 + 4*175
+// 		ye := y_tmp + 460 + 3*175
+// 		AdbShellInputSwipe(x, ys, x, ye)
+// 		choeseBoss(seq - 1)
+// 		robotgo.Sleep(1)
+// 	}
+// }
+
+// func rchoeseBoss(seq int) {
+// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
+// 	y := y_tmp + 310 + seq*178
+// 	if seq < 7 {
+// 		mouseClick(x, y)
+// 		robotgo.Sleep(3)
+// 	} else {
+// 		ys := y_tmp + 310 + 4*178
+// 		ye := y_tmp + 310 + 3*178
+// 		AdbShellInputSwipe(x, ys, x, ye)
+// 		choeseBoss(seq - 1)
+// 		robotgo.Sleep(1)
+// 	}
+// }
+
 func choeseDifficulty(seq int) {
 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-	y := y_tmp + yDifficulty + seq*110
+	y := y_tmp + yDifficulty + seq*175
 	if seq < 6 {
 		mouseClick(x, y)
 		robotgo.Sleep(3)
 	} else {
-		ys := y_tmp + 310 + 2*110
-		ye := y_tmp + 310 + 1*110
+		ys := y_tmp + yDifficulty + 2*175
+		ye := y_tmp + yDifficulty + 1*175
 		AdbShellInputSwipe(x, ys, x, ye)
 		choeseDifficulty(seq - 1)
 		robotgo.Sleep(1)
 	}
 }
+
+// func bfchoeseDifficulty(seq int) {
+// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
+// 	y := y_tmp + 310 + seq*175
+// 	if seq < 6 {
+// 		mouseClick(x, y)
+// 		robotgo.Sleep(3)
+// 	} else {
+// 		ys := y_tmp + 310 + 2*175
+// 		ye := y_tmp + 310 + 1*175
+// 		AdbShellInputSwipe(x, ys, x, ye)
+// 		choeseDifficulty(seq - 1)
+// 		robotgo.Sleep(1)
+// 	}
+// }
+
+// func acchoeseDifficulty(seq int) {
+// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
+// 	y := y_tmp + 460 + seq*175
+// 	if seq < 6 {
+// 		mouseClick(x, y)
+// 		robotgo.Sleep(3)
+// 	} else {
+// 		ys := y_tmp + 460 + 2*175
+// 		ye := y_tmp + 460 + 1*175
+// 		AdbShellInputSwipe(x, ys, x, ye)
+// 		choeseDifficulty(seq - 1)
+// 		robotgo.Sleep(1)
+// 	}
+// }
