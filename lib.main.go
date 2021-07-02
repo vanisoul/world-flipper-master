@@ -171,6 +171,16 @@ func addNotRecruit(strs []string, funcs []func(x int, y int)) (resStrs []string,
 	return
 }
 
+func addOnlyEachOther(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("onlyEachOther.png"))
+	funcs = append(funcs, func(x, y int) {
+		status = 66
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
 func addNotFullOfEnergyMain(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("mainMission.png"))
 	funcs = append(funcs, func(x, y int) {

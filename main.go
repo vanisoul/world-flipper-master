@@ -104,6 +104,7 @@ func main() {
 			runActivityImgImg, runActivityImgFunc = addMultiplayer(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addYES(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addNotRecruit(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addOnlyEachOther(runActivityImgImg, runActivityImgFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runActivityImgImg, runActivityImgFunc...)
 		}
 
