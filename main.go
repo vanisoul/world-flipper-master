@@ -76,6 +76,7 @@ func main() {
 			runOnlyPlayImg, runOnlyPlayFunc = addJoinActivity(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addImgBoss(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addImgDifficulty(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addYES(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGoGameOnly(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGoGameMaze(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGmaeOver(runOnlyPlayImg, runOnlyPlayFunc)
@@ -101,6 +102,7 @@ func main() {
 			runActivityImgImg, runActivityImgFunc = addImgBoss(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addImgDifficulty(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addMultiplayer(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addYES(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addNotRecruit(runActivityImgImg, runActivityImgFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runActivityImgImg, runActivityImgFunc...)
 		}
