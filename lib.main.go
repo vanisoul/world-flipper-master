@@ -87,7 +87,7 @@ func addJoinBoss(strs []string, funcs []func(x int, y int)) (resStrs []string, r
 func addGoGameOnly(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("goGame3.png"))
 	funcs = append(funcs, func(x, y int) {
-		if tmpRFrequency > checkpointConfig.RFrequency {
+		if tmpRFrequency > checkpointConfig.RFrequency && checkpointConfig.Type != "repalay" {
 			status = 0
 		} else {
 			tmpRFrequency++
@@ -216,6 +216,13 @@ func addFullOfEnergyMain(strs []string, funcs []func(x int, y int)) (resStrs []s
 	strs = append(strs, getSystemImg("fullOfEnergy.png"))
 	funcs = append(funcs, func(x, y int) {
 		if checkpointConfig.RFeatures {
+			imgBoss = "remaining.png"
+			imgDifficulty = "gameProblem.png"
+			yBoss = 310
+			yEvery = 178
+			yDifficulty = 310
+			choeseBossSeq = checkpointConfig.RNumber
+			choeseDifficultySeq = checkpointConfig.RDifficulty
 			tmpRFrequency = 0
 			status = 5
 		} else if checkpointConfig.Type == "boss" {
