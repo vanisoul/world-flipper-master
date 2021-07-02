@@ -157,7 +157,7 @@ func addDayClose(strs []string, funcs []func(x int, y int)) (resStrs []string, r
 func addNotRecruit(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("notRecruit.png"))
 	funcs = append(funcs, func(x, y int) {
-		haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {
+		haveAllImgsExecFunc(1, 0.05, false, []string{getSystemImg("onlyEachOther.png")}, func() {
 			status = 66
 		}, func() {
 			haveOneImgsClick(5, 0.01, false, getSystemImg("startRaising.png"))
