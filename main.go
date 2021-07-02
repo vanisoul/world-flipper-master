@@ -15,94 +15,132 @@ var checkpointConfig CheckpointConfig
 var tmpRFrequency = 0
 var tmpAuto = ""      //紀錄auto狀態 如果是auto模式才有用到
 var choseAuto = false //紀錄這次有沒有被改變狀態
+var status = 0
+var notthink = 0 //多少次迴圈沒動作 1000次沒動作 就關閉重啟
 
 func main() {
 	//初始化ID
 	infoID()
 
 	tmpcheckpointConfig, _ := LoadCheckpointConfig()
-	adbinit(tmpcheckpointConfig.Nox)
 	tmpcheckpointConfig.Type = "" //故意改變讓一開始進入回主選單
+	adbinit(tmpcheckpointConfig.Nox)
 
 	for {
 		//如果config有變動 需要重新回到主頁
 		checkpointConfig, _ = LoadCheckpointConfig()
 		if tmpcheckpointConfig != checkpointConfig || choseAuto {
 			tmpcheckpointConfig = checkpointConfig
-			if tmpAuto != "repalay" {
-				tmpAuto = checkpointConfig.Type
-			}
-			reStartImg := []string{}
-			reStartFunc := []func(x int, y int){}
-			reStartImg, reStartFunc = addStartRaising(reStartImg, reStartFunc)
-			reStartImg, reStartFunc = addRgoGame3(reStartImg, reStartFunc)
-
-			cmainImg := []string{}
-			cmainFunc := []func(x int, y int){}
-			cmainImg, cmainFunc = addMain2(cmainImg, cmainFunc)
-
-			haveOneImgsExecFunc(1, 0.05, false, reStartImg, reStartFunc...)
-			haveOneImgsExecFunc(10, 0.1, false, cmainImg, cmainFunc...)
-
-			robotgo.Sleep(8)
-			choseAuto = false
+			status = 0
 		}
 
-		//主流程
-		mainImg := []string{}
-		mainFunc := []func(x int, y int){}
-		mainImg, mainFunc = addGameLogs(mainImg, mainFunc)
-		mainImg, mainFunc = addJoinMain(mainImg, mainFunc)
-		mainImg, mainFunc = addMainMission(mainImg, mainFunc)
-		mainImg, mainFunc = addImgBoss(mainImg, mainFunc)
-		mainImg, mainFunc = addImgDifficulty(mainImg, mainFunc)
-		mainImg, mainFunc = addMainMission(mainImg, mainFunc)
+		//重開遊戲
+		if status == 0 {
+			//關閉遊戲
+			closeApp()
+			robotgo.Sleep(2)
+			//啟動遊戲
+			openApp()
 
-		//重復關卡
-		freeImg := []string{}
-		freeFunc := []func(x int, y int){}
-		freeImg, freeFunc = addGreat(freeImg, freeFunc)
-		freeImg, freeFunc = addMultiplayer(freeImg, freeFunc)
-		freeImg, freeFunc = addYES(freeImg, freeFunc)
-		freeImg, freeFunc = addOK(freeImg, freeFunc)
-		freeImg, freeFunc = addNotRecruit(freeImg, freeFunc)
-		freeImg, freeFunc = addGoPaly(freeImg, freeFunc)
-		freeImg, freeFunc = addStop(freeImg, freeFunc)
-		freeImg, freeFunc = addGoGame3(freeImg, freeFunc)
-		freeImg, freeFunc = addNext1(freeImg, freeFunc)
-		freeImg, freeFunc = addRePlay(freeImg, freeFunc)
-		freeImg, freeFunc = addExitYes(freeImg, freeFunc)
+			status = 1
+		}
 
-		//較少用到
-		dayImg := []string{}
-		dayFunc := []func(x int, y int){}
-		dayImg, dayFunc = addDayGift(dayImg, dayFunc)
-		dayImg, dayFunc = addDayClose(dayImg, dayFunc)
-		dayImg, dayFunc = addNetworkerrorOK(dayImg, dayFunc)
-		dayImg, dayFunc = addGmaeOver(dayImg, dayFunc)
-		dayImg, dayFunc = addExitHalfway(dayImg, dayFunc)
+		// 到首頁
+		if status == 1 {
+			toMainImg := []string{}
+			toMainFunc := []func(x int, y int){}
+			toMainImg, toMainFunc = addJoinMain(toMainImg, toMainFunc)
+			toMainImg, toMainFunc = addExitHalfway(toMainImg, toMainFunc)
+			toMainImg, toMainFunc = addMainMissionMainOK(toMainImg, toMainFunc)
+			haveOneImgsExecFunc(1, 0.05, false, toMainImg, toMainFunc...)
+		}
 
-		haveOneImgsExecFunc(1, 0.05, false, mainImg, mainFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, mainImg, mainFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, freeImg, freeFunc...)
-		haveOneImgsExecFunc(1, 0.05, false, dayImg, dayFunc...)
+		//確認已到首頁
+		if status == 2 {
+			//判斷體力是否滿
+			dowhatImg := []string{}
+			dowhatFunc := []func(x int, y int){}
+			//如果體力滿就狀態5 消耗體力
+			if checkpointConfig.RFeatures {
+				dowhatImg, dowhatFunc = addFullOfEnergyMain(dowhatImg, dowhatFunc)
+			} else {
+				dowhatImg, dowhatFunc = addNotFullOfEnergyMain(dowhatImg, dowhatFunc)
+			}
+			haveOneImgsExecFunc(1, 0.05, false, dowhatImg, dowhatFunc...)
+		}
 
+		//消耗體力
+		if status == 5 {
+			runOnlyPlayImg := []string{}
+			runOnlyPlayFunc := []func(x int, y int){}
+			runOnlyPlayImg, runOnlyPlayFunc = addJoinActivity(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addImgBoss(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addImgDifficulty(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addGoGameOnly(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addGmaeOver(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addOK(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addNext1(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addRePlay(runOnlyPlayImg, runOnlyPlayFunc)
+			haveOneImgsExecFunc(1, 0.05, false, runOnlyPlayImg, runOnlyPlayFunc...)
+		}
+
+		//進入活動免費房間
+		if status == 6 {
+			runActivityImgImg := []string{}
+			runActivityImgFunc := []func(x int, y int){}
+			if checkpointConfig.RFeatures {
+				runActivityImgImg, runActivityImgFunc = addFullOfEnergy(runActivityImgImg, runActivityImgFunc)
+			}
+			runActivityImgImg, runActivityImgFunc = addJoinActivity(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addImgBoss(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addImgDifficulty(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addMultiplayerInit(runActivityImgImg, runActivityImgFunc)
+			haveOneImgsExecFunc(1, 0.05, false, runActivityImgImg, runActivityImgFunc...)
+		}
+
+		//進入boss免費房間
+		if status == 7 {
+			runBoosImg := []string{}
+			runBoosFunc := []func(x int, y int){}
+			if checkpointConfig.RFeatures {
+				runBoosImg, runBoosFunc = addFullOfEnergy(runBoosImg, runBoosFunc)
+			}
+			runBoosImg, runBoosFunc = addJoinBoss(runBoosImg, runBoosFunc)
+			runBoosImg, runBoosFunc = addImgBoss(runBoosImg, runBoosFunc)
+			runBoosImg, runBoosFunc = addImgDifficulty(runBoosImg, runBoosFunc)
+			runBoosImg, runBoosFunc = addMultiplayerInit(runBoosImg, runBoosFunc)
+			haveOneImgsExecFunc(1, 0.05, false, runBoosImg, runBoosFunc...)
+		}
+
+		//開始房間內流程
+		if status == 98 {
+			runFreeRoomImg := []string{}
+			runFreeRoomFunc := []func(x int, y int){}
+			if checkpointConfig.RFeatures {
+				runFreeRoomImg, runFreeRoomFunc = addFullOfEnergy(runFreeRoomImg, runFreeRoomFunc)
+			}
+			runFreeRoomImg, runFreeRoomFunc = addMultiplayer(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addGoPaly(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addGreat(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addExitYes(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addNotRecruit(runFreeRoomImg, runFreeRoomFunc)
+			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
+		}
+
+		//離開戰鬥流程
+		if status == 99 {
+			runExitImg := []string{}
+			runExitFunc := []func(x int, y int){}
+			runExitImg, runExitFunc = addStop(runExitImg, runExitFunc)
+			runExitImg, runExitFunc = addMultiplayerInit(runExitImg, runExitFunc)
+			haveOneImgsExecFunc(1, 0.05, false, runExitImg, runExitFunc...)
+		}
+
+		if notthink > 1000 {
+			status = 0
+			notthink = 0
+		}
+		notthink++
 	}
 }
 
@@ -121,36 +159,6 @@ func choeseBoss(seq int) {
 	}
 }
 
-// func fchoeseBoss(seq int) {
-// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-// 	y := y_tmp + 460 + seq*175
-// 	if seq < 6 {
-// 		mouseClick(x, y)
-// 		robotgo.Sleep(3)
-// 	} else {
-// 		ys := y_tmp + 460 + 4*175
-// 		ye := y_tmp + 460 + 3*175
-// 		AdbShellInputSwipe(x, ys, x, ye)
-// 		choeseBoss(seq - 1)
-// 		robotgo.Sleep(1)
-// 	}
-// }
-
-// func rchoeseBoss(seq int) {
-// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-// 	y := y_tmp + 310 + seq*178
-// 	if seq < 7 {
-// 		mouseClick(x, y)
-// 		robotgo.Sleep(3)
-// 	} else {
-// 		ys := y_tmp + 310 + 4*178
-// 		ye := y_tmp + 310 + 3*178
-// 		AdbShellInputSwipe(x, ys, x, ye)
-// 		choeseBoss(seq - 1)
-// 		robotgo.Sleep(1)
-// 	}
-// }
-
 func choeseDifficulty(seq int) {
 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
 	y := y_tmp + yDifficulty + seq*175
@@ -165,33 +173,3 @@ func choeseDifficulty(seq int) {
 		robotgo.Sleep(1)
 	}
 }
-
-// func bfchoeseDifficulty(seq int) {
-// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-// 	y := y_tmp + 310 + seq*175
-// 	if seq < 6 {
-// 		mouseClick(x, y)
-// 		robotgo.Sleep(3)
-// 	} else {
-// 		ys := y_tmp + 310 + 2*175
-// 		ye := y_tmp + 310 + 1*175
-// 		AdbShellInputSwipe(x, ys, x, ye)
-// 		choeseDifficulty(seq - 1)
-// 		robotgo.Sleep(1)
-// 	}
-// }
-
-// func acchoeseDifficulty(seq int) {
-// 	_, _, x, y_tmp := findOneImages(1, 0.01, false, getSystemImg("stone.png"))
-// 	y := y_tmp + 460 + seq*175
-// 	if seq < 6 {
-// 		mouseClick(x, y)
-// 		robotgo.Sleep(3)
-// 	} else {
-// 		ys := y_tmp + 460 + 2*175
-// 		ye := y_tmp + 460 + 1*175
-// 		AdbShellInputSwipe(x, ys, x, ye)
-// 		choeseDifficulty(seq - 1)
-// 		robotgo.Sleep(1)
-// 	}
-// }

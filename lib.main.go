@@ -64,10 +64,55 @@ func addImgBoss(strs []string, funcs []func(x int, y int)) (resStrs []string, re
 	return
 }
 
+func addFullOfEnergy(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("fullOfEnergy.png"))
+	funcs = append(funcs, func(x, y int) {
+		status = 0
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
+func addJoinActivity(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	resStrs, resFuncs = clickBase(strs, "joinActivity.png", funcs)
+	return
+}
+
+func addJoinBoss(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	resStrs, resFuncs = clickBase(strs, "joinBoss.png", funcs)
+	return
+}
+
+func addGoGameOnly(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("goGame3.png"))
+	funcs = append(funcs, func(x, y int) {
+		if tmpRFrequency > checkpointConfig.RFrequency {
+			status = 0
+		} else {
+			tmpRFrequency++
+			mouseClick(x, y)
+		}
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
 func addImgDifficulty(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg(imgDifficulty))
 	funcs = append(funcs, func(x, y int) {
 		choeseDifficulty(choeseDifficultySeq)
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
+func addMultiplayerInit(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("multiplayer.png"))
+	funcs = append(funcs, func(x, y int) {
+		status = 98
 	})
 	resStrs = strs
 	resFuncs = funcs
@@ -122,6 +167,99 @@ func addNotRecruit(strs []string, funcs []func(x int, y int)) (resStrs []string,
 	return
 }
 
+func addNotFullOfEnergyMain(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("mainMission.png"))
+	funcs = append(funcs, func(x, y int) {
+		if checkpointConfig.Type == "boss" {
+			imgBoss = "stroke.png"
+			imgDifficulty = "itemExchange.png"
+			yBoss = 460
+			yEvery = 175
+			yDifficulty = 310
+			choeseBossSeq = checkpointConfig.FNumber
+			choeseDifficultySeq = checkpointConfig.FDifficulty
+			status = 7
+		} else if checkpointConfig.Type == "activity" {
+			imgBoss = "remaining.png"
+			imgDifficulty = "updateList.png"
+			yBoss = 310
+			yEvery = 178
+			yDifficulty = 460
+			choeseBossSeq = checkpointConfig.FNumber
+			choeseDifficultySeq = checkpointConfig.FDifficulty
+			status = 6
+		} else if checkpointConfig.Type == "repalay" {
+			imgBoss = "remaining.png"
+			imgDifficulty = "gameProblem.png"
+			yBoss = 310
+			yEvery = 178
+			yDifficulty = 310
+			choeseBossSeq = checkpointConfig.RNumber
+			choeseDifficultySeq = checkpointConfig.RDifficulty
+			status = 5
+		} else {
+			imgBoss = "isNotFound"
+			imgDifficulty = "isNotFound"
+			yBoss = -1
+			yEvery = -1
+			yDifficulty = -1
+			choeseBossSeq = -1
+			status = 0
+		}
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
+func addFullOfEnergyMain(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("fullOfEnergy.png"))
+	funcs = append(funcs, func(x, y int) {
+		if checkpointConfig.RFeatures {
+			tmpRFrequency = 0
+			status = 5
+		} else if checkpointConfig.Type == "boss" {
+			imgBoss = "stroke.png"
+			imgDifficulty = "itemExchange.png"
+			yBoss = 460
+			yEvery = 175
+			yDifficulty = 310
+			choeseBossSeq = checkpointConfig.FNumber
+			choeseDifficultySeq = checkpointConfig.FDifficulty
+			status = 7
+		} else if checkpointConfig.Type == "activity" {
+			imgBoss = "remaining.png"
+			imgDifficulty = "updateList.png"
+			yBoss = 310
+			yEvery = 178
+			yDifficulty = 460
+			choeseBossSeq = checkpointConfig.FNumber
+			choeseDifficultySeq = checkpointConfig.FDifficulty
+			status = 6
+		} else if checkpointConfig.Type == "repalay" {
+			imgBoss = "remaining.png"
+			imgDifficulty = "gameProblem.png"
+			yBoss = 310
+			yEvery = 178
+			yDifficulty = 310
+			choeseBossSeq = checkpointConfig.RNumber
+			choeseDifficultySeq = checkpointConfig.RDifficulty
+			status = 5
+		} else {
+			imgBoss = "isNotFound"
+			imgDifficulty = "isNotFound"
+			yBoss = -1
+			yEvery = -1
+			yDifficulty = -1
+			choeseBossSeq = -1
+			status = 0
+		}
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
 func addGreat(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("great.png"))
 	funcs = append(funcs, func(x, y int) {
@@ -141,7 +279,7 @@ func addGoPaly(strs []string, funcs []func(x int, y int)) (resStrs []string, res
 	strs = append(strs, getSystemImg("goPaly.png"))
 	funcs = append(funcs, func(x, y int) {
 		haveOneImgsClick(1, 0.01, false, getSystemImg("goGame.png"))
-		haveOneImgsClick(1, 0.01, false, getSystemImg("goGame2.png"))
+		status = 99
 	})
 	resStrs = strs
 	resFuncs = funcs
@@ -226,5 +364,15 @@ func addGmaeOver(strs []string, funcs []func(x int, y int)) (resStrs []string, r
 }
 func addExitHalfway(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	resStrs, resFuncs = clickBase(strs, "exitHalfway.png", funcs)
+	return
+}
+
+func addMainMissionMainOK(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("mainMission.png"))
+	funcs = append(funcs, func(x, y int) {
+		status = 2
+	})
+	resStrs = strs
+	resFuncs = funcs
 	return
 }
