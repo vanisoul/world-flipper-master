@@ -115,12 +115,13 @@ func main() {
 
 			runFreeRoomImg, runFreeRoomFunc = addGoPaly(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addGreat(runFreeRoomImg, runFreeRoomFunc)
-			runFreeRoomImg, runFreeRoomFunc = addExitYes(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addExitOK(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addStop(runFreeRoomImg, runFreeRoomFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
 		}
 
 		if notthink > 1000 {
+			savescreen("notthink")
 			status = 0
 			notthink = 0
 		}

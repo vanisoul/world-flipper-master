@@ -354,6 +354,17 @@ func addExitYes(strs []string, funcs []func(x int, y int)) (resStrs []string, re
 	return
 }
 
+func addExitOK(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("OK.png"))
+	funcs = append(funcs, func(x, y int) {
+		mouseClick(x, y)
+		status = 6
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
 func addNetworkerrorOK(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	resStrs, resFuncs = clickBase(strs, "networkerrorOK.png", funcs)
 	return
