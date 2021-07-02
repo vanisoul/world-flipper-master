@@ -147,19 +147,11 @@ func addDayClose(strs []string, funcs []func(x int, y int)) (resStrs []string, r
 func addNotRecruit(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("notRecruit.png"))
 	funcs = append(funcs, func(x, y int) {
-		haveAllImgsExecFunc(1, 0.05, false, []string{getSystemImg("fullOfEnergy.png")}, func() {
-			if checkpointConfig.RFeatures {
-				tmpRFrequency = 0
-				tmpAuto = "repalay"
-				choseAuto = true
-			}
-		}, func() {
-			haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
-				haveOneImgsClick(5, 0.01, false, getSystemImg("startRaising.png"))
-				haveOneImgsClick(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
-				haveOneImgsClick(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
-				haveOneImgsClick(5, 0.01, false, getSystemImg("goRecruit.png"))
-			})
+		haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
+			haveOneImgsClick(5, 0.01, false, getSystemImg("startRaising.png"))
+			haveOneImgsClick(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
+			haveOneImgsClick(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
+			haveOneImgsClick(5, 0.01, false, getSystemImg("goRecruit.png"))
 		})
 	})
 	resStrs = strs
