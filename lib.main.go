@@ -109,18 +109,13 @@ func addImgDifficulty(strs []string, funcs []func(x int, y int)) (resStrs []stri
 	return
 }
 
-func addMultiplayerInit(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+func addMultiplayer(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("multiplayer.png"))
 	funcs = append(funcs, func(x, y int) {
-		status = 98
+		mouseClick(x, y)
 	})
 	resStrs = strs
 	resFuncs = funcs
-	return
-}
-
-func addMultiplayer(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
-	resStrs, resFuncs = clickBase(strs, "multiplayer.png", funcs)
 	return
 }
 
@@ -147,7 +142,9 @@ func addDayClose(strs []string, funcs []func(x int, y int)) (resStrs []string, r
 func addNotRecruit(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("notRecruit.png"))
 	funcs = append(funcs, func(x, y int) {
-		haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {}, func() {
+		haveAllImgsExecFunc(1, 0.01, false, []string{getSystemImg("onlyEachOther.png")}, func() {
+			status = 66
+		}, func() {
 			haveOneImgsClick(5, 0.01, false, getSystemImg("startRaising.png"))
 			haveOneImgsClick(1, 0.01, false, getSystemImg("YrandomRecruitment.png"))
 			haveOneImgsClick(1, 0.01, false, getSystemImg("YfollowersPublic.png"))
@@ -170,7 +167,7 @@ func addNotFullOfEnergyMain(strs []string, funcs []func(x int, y int)) (resStrs 
 			yDifficulty = 310
 			choeseBossSeq = checkpointConfig.FNumber
 			choeseDifficultySeq = checkpointConfig.FDifficulty
-			status = 7
+			status = 6
 		} else if checkpointConfig.Type == "activity" {
 			imgBoss = "remaining.png"
 			imgDifficulty = "updateList.png"
@@ -286,11 +283,11 @@ func addGoPaly(strs []string, funcs []func(x int, y int)) (resStrs []string, res
 func addStop(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg("stop.png"))
 	funcs = append(funcs, func(x, y int) {
-		if tmpAuto != "repalay" {
-			mouseClick(x, y)
-			haveOneImgsClick(5, 0.01, false, getSystemImg("exit.png"))
-			haveOneImgsClick(5, 0.01, false, getSystemImg("exitYes.png"))
-		}
+		mouseClick(x, y)
+		haveOneImgsClick(5, 0.01, false, getSystemImg("exit.png"))
+		haveOneImgsClick(5, 0.01, false, getSystemImg("exitYes.png"))
+		status = 6
+
 	})
 	resStrs = strs
 	resFuncs = funcs
@@ -322,7 +319,13 @@ func addRePlay(strs []string, funcs []func(x int, y int)) (resStrs []string, res
 	return
 }
 func addExitYes(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
-	resStrs, resFuncs = clickBase(strs, "exitYes.png", funcs)
+	strs = append(strs, getSystemImg("exitYes.png"))
+	funcs = append(funcs, func(x, y int) {
+		mouseClick(x, y)
+		status = 6
+	})
+	resStrs = strs
+	resFuncs = funcs
 	return
 }
 

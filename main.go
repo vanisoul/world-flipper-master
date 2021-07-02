@@ -84,46 +84,34 @@ func main() {
 			haveOneImgsExecFunc(1, 0.05, false, runOnlyPlayImg, runOnlyPlayFunc...)
 		}
 
-		//進入活動免費房間
+		//進入免費房間
 		if status == 6 {
 			runActivityImgImg := []string{}
 			runActivityImgFunc := []func(x int, y int){}
 			if checkpointConfig.RFeatures {
 				runActivityImgImg, runActivityImgFunc = addFullOfEnergy(runActivityImgImg, runActivityImgFunc)
 			}
-			runActivityImgImg, runActivityImgFunc = addJoinActivity(runActivityImgImg, runActivityImgFunc)
+			if checkpointConfig.Type == "activity" {
+				runActivityImgImg, runActivityImgFunc = addJoinActivity(runActivityImgImg, runActivityImgFunc)
+			} else if checkpointConfig.Type == "boss" {
+				runActivityImgImg, runActivityImgFunc = addJoinBoss(runActivityImgImg, runActivityImgFunc)
+			}
+
 			runActivityImgImg, runActivityImgFunc = addImgBoss(runActivityImgImg, runActivityImgFunc)
 			runActivityImgImg, runActivityImgFunc = addImgDifficulty(runActivityImgImg, runActivityImgFunc)
-			runActivityImgImg, runActivityImgFunc = addMultiplayerInit(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addMultiplayer(runActivityImgImg, runActivityImgFunc)
+			runActivityImgImg, runActivityImgFunc = addNotRecruit(runActivityImgImg, runActivityImgFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runActivityImgImg, runActivityImgFunc...)
 		}
 
-		//進入boss免費房間
-		if status == 7 {
-			runBoosImg := []string{}
-			runBoosFunc := []func(x int, y int){}
-			if checkpointConfig.RFeatures {
-				runBoosImg, runBoosFunc = addFullOfEnergy(runBoosImg, runBoosFunc)
-			}
-			runBoosImg, runBoosFunc = addJoinBoss(runBoosImg, runBoosFunc)
-			runBoosImg, runBoosFunc = addImgBoss(runBoosImg, runBoosFunc)
-			runBoosImg, runBoosFunc = addImgDifficulty(runBoosImg, runBoosFunc)
-			runBoosImg, runBoosFunc = addMultiplayerInit(runBoosImg, runBoosFunc)
-			haveOneImgsExecFunc(1, 0.05, false, runBoosImg, runBoosFunc...)
-		}
-
 		//開始免費房間流程
-		if status == 98 {
+		if status == 66 {
 			runFreeRoomImg := []string{}
 			runFreeRoomFunc := []func(x int, y int){}
-			if checkpointConfig.RFeatures {
-				runFreeRoomImg, runFreeRoomFunc = addFullOfEnergy(runFreeRoomImg, runFreeRoomFunc)
-			}
-			runFreeRoomImg, runFreeRoomFunc = addMultiplayer(runFreeRoomImg, runFreeRoomFunc)
+
 			runFreeRoomImg, runFreeRoomFunc = addGoPaly(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addGreat(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addExitYes(runFreeRoomImg, runFreeRoomFunc)
-			runFreeRoomImg, runFreeRoomFunc = addNotRecruit(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addStop(runFreeRoomImg, runFreeRoomFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
 		}
