@@ -99,6 +99,21 @@ func addGoGameOnly(strs []string, funcs []func(x int, y int)) (resStrs []string,
 	return
 }
 
+func addGoGameMaze(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	strs = append(strs, getSystemImg("goGameMaze.png"))
+	funcs = append(funcs, func(x, y int) {
+		if tmpRFrequency > checkpointConfig.RFrequency && checkpointConfig.Type != "repalay" {
+			status = 0
+		} else {
+			tmpRFrequency++
+			mouseClick(x, y)
+		}
+	})
+	resStrs = strs
+	resFuncs = funcs
+	return
+}
+
 func addImgDifficulty(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	strs = append(strs, getSystemImg(imgDifficulty))
 	funcs = append(funcs, func(x, y int) {
