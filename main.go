@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strconv"
+
 	"github.com/go-vgo/robotgo"
 )
 
@@ -80,7 +82,7 @@ func main() {
 			runOnlyPlayImg, runOnlyPlayFunc = addGoGameOnly(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGoGameMaze(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGmaeOver(runOnlyPlayImg, runOnlyPlayFunc)
-			runOnlyPlayImg, runOnlyPlayFunc = addOK(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addGameOverOK(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addNext1(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addRePlay(runOnlyPlayImg, runOnlyPlayFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runOnlyPlayImg, runOnlyPlayFunc...)
@@ -121,7 +123,7 @@ func main() {
 		}
 
 		if notthink > 500 {
-			savescreen("notthink")
+			savescreen("notthink", strconv.Itoa(status))
 			status = 0
 			notthink = 0
 		}

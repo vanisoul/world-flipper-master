@@ -144,6 +144,11 @@ func addOK(strs []string, funcs []func(x int, y int)) (resStrs []string, resFunc
 	return
 }
 
+func addGameOverOK(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	resStrs, resFuncs = clickBase(strs, "GameOverOK.png", funcs)
+	return
+}
+
 func addDayGift(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	resStrs, resFuncs = clickBase(strs, "dayGift.png", funcs)
 	return
