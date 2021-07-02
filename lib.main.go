@@ -278,7 +278,6 @@ func addGoPaly(strs []string, funcs []func(x int, y int)) (resStrs []string, res
 	strs = append(strs, getSystemImg("goPaly.png"))
 	funcs = append(funcs, func(x, y int) {
 		haveOneImgsClick(1, 0.01, false, getSystemImg("goGame.png"))
-		status = 99
 	})
 	resStrs = strs
 	resFuncs = funcs

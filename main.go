@@ -112,7 +112,7 @@ func main() {
 			haveOneImgsExecFunc(1, 0.05, false, runBoosImg, runBoosFunc...)
 		}
 
-		//開始房間內流程
+		//開始免費房間流程
 		if status == 98 {
 			runFreeRoomImg := []string{}
 			runFreeRoomFunc := []func(x int, y int){}
@@ -124,16 +124,8 @@ func main() {
 			runFreeRoomImg, runFreeRoomFunc = addGreat(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addExitYes(runFreeRoomImg, runFreeRoomFunc)
 			runFreeRoomImg, runFreeRoomFunc = addNotRecruit(runFreeRoomImg, runFreeRoomFunc)
+			runFreeRoomImg, runFreeRoomFunc = addStop(runFreeRoomImg, runFreeRoomFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
-		}
-
-		//離開戰鬥流程
-		if status == 99 {
-			runExitImg := []string{}
-			runExitFunc := []func(x int, y int){}
-			runExitImg, runExitFunc = addStop(runExitImg, runExitFunc)
-			runExitImg, runExitFunc = addMultiplayerInit(runExitImg, runExitFunc)
-			haveOneImgsExecFunc(1, 0.05, false, runExitImg, runExitFunc...)
 		}
 
 		if notthink > 1000 {
