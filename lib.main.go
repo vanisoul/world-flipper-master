@@ -344,6 +344,10 @@ func addNext1(strs []string, funcs []func(x int, y int)) (resStrs []string, resF
 	resStrs, resFuncs = clickBase(strs, "next1.png", funcs)
 	return
 }
+func addLvUP(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
+	resStrs, resFuncs = clickBase(strs, "LvUp.png", funcs)
+	return
+}
 func addRePlay(strs []string, funcs []func(x int, y int)) (resStrs []string, resFuncs []func(x int, y int)) {
 	resStrs, resFuncs = clickBase(strs, "rePlay.png", funcs)
 	return

@@ -84,6 +84,7 @@ func main() {
 			runOnlyPlayImg, runOnlyPlayFunc = addGmaeOver(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addGameOverOK(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addNext1(runOnlyPlayImg, runOnlyPlayFunc)
+			runOnlyPlayImg, runOnlyPlayFunc = addLvUP(runOnlyPlayImg, runOnlyPlayFunc)
 			runOnlyPlayImg, runOnlyPlayFunc = addRePlay(runOnlyPlayImg, runOnlyPlayFunc)
 			haveOneImgsExecFunc(1, 0.05, false, runOnlyPlayImg, runOnlyPlayFunc...)
 		}
@@ -122,7 +123,7 @@ func main() {
 			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
 		}
 
-		if notthink > 500 {
+		if notthink > 100 {
 			savescreen("notthink", strconv.Itoa(status))
 			status = 0
 			notthink = 0
