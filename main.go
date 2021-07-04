@@ -123,7 +123,7 @@ func main() {
 			haveOneImgsExecFunc(1, 0.05, false, runFreeRoomImg, runFreeRoomFunc...)
 		}
 
-		if notthink > 100 {
+		if notthink > checkpointConfig.Notthink {
 			savescreen("notthink", strconv.Itoa(status))
 			status = 0
 			notthink = 0

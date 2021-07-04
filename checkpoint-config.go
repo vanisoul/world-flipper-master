@@ -36,4 +36,5 @@ type CheckpointConfig struct {
 	RDifficulty int    `mapstructure:"rDifficulty"`
 	RFrequency  int    `mapstructure:"rFrequency"`
 	RFeatures   bool   `mapstructure:"rFeatures"`
+	Notthink    int    `mapstructure:"notthink"`
 }
