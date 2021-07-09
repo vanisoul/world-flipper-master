@@ -9,8 +9,8 @@ import (
 var yDifficulty = 0
 var yBoss = 0
 var yEvery = 0
-var imgBoss = "remaining.pngOrstroke.png"
-var imgDifficulty = "updateList.pngOritemExchange.png"
+var imgBoss = "defultImg.png"
+var imgDifficulty = "defultImg.png"
 var choeseBossSeq = 0       //這次選擇的關卡
 var choeseDifficultySeq = 0 //這次選擇的關卡
 var checkpointConfig CheckpointConfig
