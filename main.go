@@ -15,7 +15,6 @@ var choeseBossSeq = 0       //這次選擇的關卡
 var choeseDifficultySeq = 0 //這次選擇的關卡
 var checkpointConfig CheckpointConfig
 var tmpRFrequency = 0
-var tmpAuto = ""      //紀錄auto狀態 如果是auto模式才有用到
 var choseAuto = false //紀錄這次有沒有被改變狀態
 var status = 0
 var notthink = 0 //多少次迴圈沒動作 1000次沒動作 就關閉重啟
@@ -53,6 +52,7 @@ func main() {
 			toMainImg, toMainFunc = addJoinMain(toMainImg, toMainFunc)
 			toMainImg, toMainFunc = addOK(toMainImg, toMainFunc)
 			toMainImg, toMainFunc = addExitHalfway(toMainImg, toMainFunc)
+			toMainImg, toMainFunc = addDownloadOK(toMainImg, toMainFunc)
 			toMainImg, toMainFunc = addMainMissionMainOK(toMainImg, toMainFunc)
 			haveOneImgsExecFunc(1, 0.05, false, toMainImg, toMainFunc...)
 		}
@@ -100,6 +100,7 @@ func main() {
 				runActivityImgImg, runActivityImgFunc = addJoinActivity(runActivityImgImg, runActivityImgFunc)
 			} else if checkpointConfig.Type == "boss" {
 				runActivityImgImg, runActivityImgFunc = addJoinBoss(runActivityImgImg, runActivityImgFunc)
+				runActivityImgImg, runActivityImgFunc = addJoinBoss2(runActivityImgImg, runActivityImgFunc)
 			}
 
 			runActivityImgImg, runActivityImgFunc = addImgBoss(runActivityImgImg, runActivityImgFunc)

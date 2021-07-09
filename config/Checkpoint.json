@@ -2,7 +2,7 @@
     "nox": 1,
     "type": "boss",
     "fNumber": 1,
-    "fDifficulty":1,
+    "fDifficulty":3,
     "rNumber": 2,
     "rDifficulty" : 2,
     "rFrequency" : 3,
